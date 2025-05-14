@@ -3,7 +3,7 @@ name: Deploy Rails App to Azure Web App
 on:
   push:
     branches:
-      - main
+      - azure-connect
 
 jobs:
   build-and-deploy:
