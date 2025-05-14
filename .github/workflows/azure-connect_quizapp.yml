@@ -29,14 +29,6 @@ jobs:
           node-version: '18'
       - run: yarn install
 
-      - name: Precompile assets
-        run: |
-          RAILS_ENV=production bundle exec rails assets:precompile
-
-      - name: Run DB migrations
-        run: |
-          RAILS_ENV=production bundle exec rails db:migrate
-
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v2
         with:
