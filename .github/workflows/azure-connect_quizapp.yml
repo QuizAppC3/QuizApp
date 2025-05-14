@@ -1,5 +1,9 @@
 name: Deploy Rails App to Azure Web App
 
+permissions:
+  id-token: write  # Berechtigung zum Schreiben des ID-Tokens
+  contents: write  # Berechtigung zum Lesen des Repository-Inhalts
+
 on:
   push:
     branches:
