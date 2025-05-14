@@ -3,7 +3,7 @@ name: Deploy Rails App to Azure Web App
 on:
   push:
     branches:
-      - azure-connect
+      - Azure-connect
 
 jobs:
   build-and-deploy:
@@ -16,7 +16,7 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.4.3  # oder deine Version
+          ruby-version: 3.4.3
 
       - name: Install dependencies
         run: |
