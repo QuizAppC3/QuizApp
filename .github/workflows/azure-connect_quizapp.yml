@@ -36,13 +36,6 @@ jobs:
           bundle install
           yarn install
 
-      - name: Precompile assets
-        run: |
-          bundle exec rails assets:precompile
-
-      - name: Set up secret key base
-        run: echo "RAILS_SECRET_KEY_BASE=${{ secrets.RAILS_SECRET_KEY_BASE }}" >> $GITHUB_ENV
-
       - name: Login to Azure
         uses: azure/login@v1
         with:
