@@ -1,13 +1,16 @@
 name: Deploy Rails App to Azure Web App
 
 permissions:
-  id-token: write  # Berechtigung zum Schreiben des ID-Tokens
-  contents: write  # Berechtigung zum Lesen des Repository-Inhalts
+  id-token: write
+  contents: read
 
 on:
   push:
     branches:
       - Azure-connect
+
+env:
+  RAILS_ENV: production
 
 jobs:
   build-and-deploy:
@@ -22,46 +25,34 @@ jobs:
         with:
           ruby-version: 3.4.3
 
-      - name: Install dependencies
-        run: |
-          gem install bundler
-          bundle install
-
       - name: Set up Node and Yarn
         uses: actions/setup-node@v3
         with:
           node-version: '18'
 
-      - run: yarn install
+      - name: Install dependencies
+        run: |
+          gem install bundler
+          bundle install
+          yarn install
 
+      - name: Precompile assets
+        run: |
+          bundle exec rails assets:precompile
 
-      # Check out the repo
-      - uses: actions/checkout@main
-      - uses: azure/login@v2
+      - name: Set up secret key base
+        run: echo "RAILS_SECRET_KEY_BASE=${{ secrets.RAILS_SECRET_KEY_BASE }}" >> $GITHUB_ENV
+
+      - name: Login to Azure
+        uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-      
-      # Set up .NET Core SDK
-      - name: Setup .NET Core
-        uses: actions/setup-dotnet@v3
+      - name: Deploy to Azure Web App
+        uses: azure/webapps-deploy@v2
         with:
-          dotnet-version: ${{ env.DOTNET_VERSION }} 
-      
-      # Run dotnet build and publish
-      - name: dotnet build and publish
-        run: |
-          dotnet restore
-          dotnet build --configuration Release
-          dotnet publish -c Release --property:PublishDir='${{ env.AZURE_WEBAPP_PACKAGE_PATH }}/myapp' 
-          
-      # Deploy to Azure Web apps
-      - name: 'Run Azure webapp deploy action using Azure Credentials'
-        uses: azure/webapps-deploy@v3
-        with: 
-          app-name: ${{ env.AZURE_QUIZAPP }} # Replace with your app name
-          package: '${{ env.AZURE_WEBAPP_PACKAGE_PATH }}/myapp'
-      
-      - name: logout
-        run: |
-          az logout
+          app-name: Quizapp   # Dein Azure App Service Name
+          package: .          # Root-Verzeichnis deiner App
+
+      - name: Logout of Azure
+        run: az logout
