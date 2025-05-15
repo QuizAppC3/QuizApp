@@ -42,10 +42,10 @@ jobs:
         with:
           auth-type: SERVICE_PRINCIPAL
           client-id: ${{ secrets.AZURE_CLIENT_ID }}
-          password: ${{ secrets.AZURE_CLIENT_SECRET }}
           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
           enable-AzPSSession: true
+        run: az login
 
       # Azure CLI Action only supports linux self-hosted runners for now.
       # If you want to execute the Azure CLI script on a windows self-hosted runner, you can execute it directly in `run`.
