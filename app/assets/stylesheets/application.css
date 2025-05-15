@@ -1,10 +1,54 @@
-/*
- * This is a manifest file that'll be compiled into application.css.
- *
- * With Propshaft, assets are served efficiently without preprocessing steps. You can still include
- * application-wide styles in this file, but keep in mind that CSS precedence will follow the standard
- * cascading order, meaning styles declared later in the document or manifest will override earlier ones,
- * depending on specificity.
- *
- * Consider organizing styles into separate files for maintainability.
- */
+body {
+  background-color: #579bf5;
+  color: white;
+  font-family: sans-serif;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+header {
+  background-color: #3b8bf4;
+  color: rgb(255, 255, 255);
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  box-sizing: border-box;
+  font-family: 'Cooper Hewitt Thin'; /* Fügt die Schriftart hinzu */
+  font-weight: 700; /* Macht die Schrift fett (optional) */
+}
+
+header h1 {
+  margin: 0;
+  font-size: 2em;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  flex-grow: 1;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.content-container {
+  background-color: rgb(143, 233, 255);
+  color: #03a9ce;
+  border-radius: 15px;
+  padding: 30px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  width: 90%;
+  max-width: 800px;
+  box-sizing: border-box;
+}
+
+h1 {
+  margin-bottom: 20px;
+  font-size: 2.5em;
+}
