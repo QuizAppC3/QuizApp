@@ -38,8 +38,7 @@ jobs:
           yarn install
 
 
-      - name: az login
-        run: az login
+
 
       - name: Azure login
         uses: azure/login@v2
