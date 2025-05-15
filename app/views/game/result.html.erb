@@ -1,0 +1,11 @@
+<h1>Spiel beendet!</h1>
+
+<p>Dein Endstand: <strong><%= @game.score %> Punkte</strong></p>
+
+<% if @game.score >= 80 %>
+  <p>🎉 Glückwunsch! Super gemacht! 🎉</p>
+<% else %>
+  <p>Gut gespielt – beim nächsten Mal wird’s besser!</p>
+<% end %>
+
+<%= link_to 'Neues Spiel starten', game_start_path, class: 'button' %>

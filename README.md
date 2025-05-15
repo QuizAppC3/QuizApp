@@ -27,3 +27,5 @@ export DB_PASSWORD=<beliebiges passwort>
 export GEM_HOME="$HOME/.gem"
 
 rails server
+
+
