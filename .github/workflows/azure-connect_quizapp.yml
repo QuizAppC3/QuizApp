@@ -37,6 +37,10 @@ jobs:
           bundle install
           yarn install
 
+
+      - name: az login
+        run: az login
+
       - name: Azure login
         uses: azure/login@v2
         with:
@@ -45,8 +49,7 @@ jobs:
           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
           enable-AzPSSession: true
-        run: az login
-
+      
       # Azure CLI Action only supports linux self-hosted runners for now.
       # If you want to execute the Azure CLI script on a windows self-hosted runner, you can execute it directly in `run`.
       - name: Azure CLI script
