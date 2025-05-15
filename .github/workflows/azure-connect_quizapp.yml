@@ -1,51 +1,68 @@
-name: Deploy Rails App to Azure Web App
+# Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
+# More GitHub Actions for Azure: https://github.com/Azure/actions
 
-permissions:
-  id-token: write
-  contents: read
+name: Build and deploy ASP.Net Core app to Azure Web App - Quizapp
 
 on:
   push:
     branches:
       - Azure-connect
-
-env:
-  RAILS_ENV: production
+  workflow_dispatch:
 
 jobs:
-  build-and-deploy:
-    runs-on: ubuntu-latest
+  build:
+    runs-on: windows-latest
+    permissions:
+      contents: read #This is required for actions/checkout
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
-      - name: Set up Ruby
-        uses: ruby/setup-ruby@v1
+      - name: Set up .NET Core
+        uses: actions/setup-dotnet@v4
         with:
-          ruby-version: 3.4.3
+          dotnet-version: '9.x'
 
-      - name: Set up Node and Yarn
-        uses: actions/setup-node@v3
+      - name: Build with dotnet
+        run: dotnet build --configuration Release
+
+      - name: dotnet publish
+        run: dotnet publish -c Release -o "${{env.DOTNET_ROOT}}/myapp"
+
+      - name: Upload artifact for deployment job
+        uses: actions/upload-artifact@v4
         with:
-          node-version: '18'
+          name: .net-app
+          path: ${{env.DOTNET_ROOT}}/myapp
 
-      - name: Install dependencies
-        run: |
-          gem install bundler
-          bundle install
-          yarn install
+  deploy:
+    runs-on: windows-latest
+    needs: build
+    environment:
+      name: 'Production'
+      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+    permissions:
+      id-token: write #This is required for requesting the JWT
+      contents: read #This is required for actions/checkout
 
+    steps:
+      - name: Download artifact from build job
+        uses: actions/download-artifact@v4
+        with:
+          name: .net-app
+      
       - name: Login to Azure
-        uses: azure/login@v1
+        uses: azure/login@v2
         with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_29711A0AD9B140B2806487B9AE1E49FB }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_F218C70AEF8F4DB4BDF642D056CABE5C }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_9E8F3D1525D64E14A8638A7491EAE204 }}
 
       - name: Deploy to Azure Web App
-        uses: azure/webapps-deploy@v2
+        id: deploy-to-webapp
+        uses: azure/webapps-deploy@v3
         with:
-          app-name: Quizapp   # Dein Azure App Service Name
-          package: .          # Root-Verzeichnis deiner App
-
-      - name: Logout of Azure
-        run: az logout
+          app-name: 'Quizapp'
+          slot-name: 'Production'
+          package: .
+          
