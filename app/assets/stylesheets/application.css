@@ -1,5 +1,5 @@
 body {
-  background-color: #800080;
+  background-color: #579bf5;
   color: white;
   font-family: sans-serif;
   margin: 0;
@@ -10,13 +10,15 @@ body {
 }
 
 header {
-  background-color: #700070;
-  color: #ffbf00ff;
+  background-color: #3b8bf4;
+  color: rgb(255, 255, 255);
   padding: 20px;
   text-align: center;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   width: 100%;
   box-sizing: border-box;
+  font-family: 'Cooper Hewitt Thin'; /* Fügt die Schriftart hinzu */
+  font-weight: 700; /* Macht die Schrift fett (optional) */
 }
 
 header h1 {
@@ -35,8 +37,8 @@ main {
 }
 
 .content-container {
-  background-color: #ffbf00ff;
-  color: #800080;
+  background-color: rgb(143, 233, 255);
+  color: #03a9ce;
   border-radius: 15px;
   padding: 30px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
