@@ -1,4 +1,5 @@
 class GameController < ApplicationController
+
   def index
     load_random_question
   end
@@ -49,7 +50,4 @@ end
   def load_random_question
     @question = Question.order("RANDOM()").first
   end
-
-
-
 end

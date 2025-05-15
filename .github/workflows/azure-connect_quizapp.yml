@@ -7,7 +7,7 @@ permissions:
 on:
   push:
     branches:
-      - Azure-connect
+      - main
 
 env:
   RAILS_ENV: production
@@ -36,10 +36,10 @@ jobs:
           gem install bundler
           bundle install
           yarn install
+          gem install rails
 
 
-      - name: az login
-        run: az login
+
 
       - name: Azure login
         uses: azure/login@v2
