@@ -36,6 +36,7 @@ jobs:
           gem install bundler
           bundle install
           yarn install
+          gem install rails
 
 
 
