@@ -49,5 +49,6 @@ end
 
   def load_random_question
     @question = Question.order("RANDOM()").first
+    session[:score] ||= 0
   end
 end

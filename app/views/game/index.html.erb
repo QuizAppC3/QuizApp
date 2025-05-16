@@ -4,7 +4,7 @@
 <p><strong>Punktestand:</strong> <%= current_game&.score || 0 %></p>
 
 <% if flash[:notice] %>
-  <p style="color: green;"><%= flash[:notice] %></p>
+  <p style="color: white;"><%= flash[:notice] %></p>
 <% elsif flash[:alert] %>
   <p style="color: red;"><%= flash[:alert] %></p>
 <% end %>
@@ -12,20 +12,18 @@
 <% if @question %>
   <div>
     <% if not params[:answered] %>
-    <h2><%= @question.frage %></h2>
+      <h2><%= @question.frage %></h2>
     <% end %>
 
     <% unless params[:answered] %>
       <%= form_with url: game_answer_path, method: :post do %>
         <%= hidden_field_tag :question_id, @question.id %>
 
-        <ul>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 1rem;">
           <% [@question.antwort1, @question.antwort2, @question.antwort3, @question.antwort4].each do |answer| %>
-            <li>
-              <%= submit_tag answer, name: "selected_answer" %>
-            </li>
+            <%= submit_tag answer, name: "selected_answer", style: "padding: 1rem; font-size: 1rem; background-color: #3498db; color: white; border: none; border-radius: 8px; cursor: pointer; transition: background-color 0.3s;" %>
           <% end %>
-        </ul>
+        </div>
       <% end %>
     <% end %>
   </div>
@@ -34,5 +32,7 @@
 <% end %>
 
 <% if params[:answered] %>
-  <%= button_to 'Nächste Frage', game_next_question_path, method: :post %>
+  <div style="margin-top: 2rem;">
+    <%= button_to 'Nächste Frage', game_next_question_path, method: :post, style: "padding: 1rem 2rem; font-size: 1rem; background-color: #2ecc71; color: white; border: none; border-radius: 8px; cursor: pointer; transition: background-color 0.3s;" %>
+  </div>
 <% end %>
