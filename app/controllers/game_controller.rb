@@ -5,25 +5,36 @@ class GameController < ApplicationController
   end
 
 def start
-  @game = Game.create(score: 0, active: true)
+  session[:total_questions] = params[:total_questions].to_i
   session[:question_counter] = 0
-  session[:score] = 0             
+  session[:score] = 0
+  session[:asked_questions] = []
+  @game = Game.create(score: 0, active: true)
   redirect_to game_path
 end
+
 
 def next_question
   session[:question_counter] ||= 0
   session[:question_counter] += 1
 
-  if session[:question_counter] > 10
+  if session[:question_counter] == session[:total_questions]
     redirect_to game_result_path
-  else
-    @question = Question.order("RANDOM()").first
+    return
+  end
+
+  asked_ids = session[:asked_questions] || []
+  @question = Question.where.not(id: asked_ids).order("RANDOM()").first
+
+  if @question
+    session[:asked_questions] << @question.id
     @answered = false
     render :index
+  else
+    flash[:alert] = "Nicht genügend Fragen verfügbar."
+    redirect_to game_result_path
   end
 end
-
 
   def answer
   @question = Question.find(params[:question_id])
