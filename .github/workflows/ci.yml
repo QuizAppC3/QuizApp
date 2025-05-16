@@ -20,27 +20,26 @@ jobs:
           bundler-cache: true
 
       - name: Scan for common Rails security vulnerabilities using static analysis
-        run: bundle exec brakeman --no-pager
-
+        run: bin/brakeman --no-pager
 
   scan_js:
-    runs-on: ubuntu-latest
+      runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+  steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
 
-      - name: Set up Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: .ruby-version
-          bundler-cache: true
+    - name: Install Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'  # oder die Version, die du brauchst
 
-      - name: Install dependencies
-        run: bundle install    
+    - name: Install dependencies
+      run: npm ci
 
-      - name: Scan for security vulnerabilities in JavaScript dependencies
-        run: bundle exec rails importmap:audit
+    - name: Audit JavaScript dependencies
+      run: npm audit --audit-level=moderate
+
 
   lint:
     runs-on: ubuntu-latest
