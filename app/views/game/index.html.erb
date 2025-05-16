@@ -1,0 +1,38 @@
+<h1>Quiz Game</h1>
+
+<% current_game = Game.last %>
+<p><strong>Punktestand:</strong> <%= current_game&.score || 0 %></p>
+
+<% if flash[:notice] %>
+  <p style="color: green;"><%= flash[:notice] %></p>
+<% elsif flash[:alert] %>
+  <p style="color: red;"><%= flash[:alert] %></p>
+<% end %>
+
+<% if @question %>
+  <div>
+    <% if not params[:answered] %>
+    <h2><%= @question.frage %></h2>
+    <% end %>
+
+    <% unless params[:answered] %>
+      <%= form_with url: game_answer_path, method: :post do %>
+        <%= hidden_field_tag :question_id, @question.id %>
+
+        <ul>
+          <% [@question.antwort1, @question.antwort2, @question.antwort3, @question.antwort4].each do |answer| %>
+            <li>
+              <%= submit_tag answer, name: "selected_answer" %>
+            </li>
+          <% end %>
+        </ul>
+      <% end %>
+    <% end %>
+  </div>
+<% else %>
+  <p style="color: red;">Keine Frage verfügbar.</p>
+<% end %>
+
+<% if params[:answered] %>
+  <%= button_to 'Nächste Frage', game_next_question_path, method: :post %>
+<% end %>
