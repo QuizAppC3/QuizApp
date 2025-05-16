@@ -1,5 +1,6 @@
 body {
   background-color: #579bf5;
+  background: linear-gradient(135deg, #ff9ed7, #ff4eb5 ,#7b6cff, #1600d9);
   color: white;
   font-family: sans-serif;
   margin: 0;
@@ -10,20 +11,34 @@ body {
 }
 
 header {
-  background-color: #3b8bf4;
+  background-color: #ffffff;
+  font-family: 'Pacifico';
   color: rgb(255, 255, 255);
-  padding: 20px;
+  font-size: 3rem;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
   text-align: center;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  width: 100%;
-  box-sizing: border-box;
-  font-family: 'Cooper Hewitt Thin';
-  font-weight: 700;
+  text-decoration: none;
+  padding: 10px 0;
+  background-image: linear-gradient(135deg, #ff9ed7, #ff4eb5, #7b6cff, #1600d9);
+  -webkit-background-clip: text;
+}
+
+header a {
+  color: inherit;
+  text-decoration: none;
+}
+
+header a:visited,
+header a:hover,
+header a:active {
+  color: inherit;
+  text-decoration: none;
 }
 
 header h1 {
   margin: 0;
   font-size: 2em;
+  text-decoration: none;
 }
 
 main {
@@ -37,8 +52,8 @@ main {
 }
 
 .content-container {
-  background-color: rgb(15, 102, 251);
-  color: #ffffff;
+  background-color: rgb(255, 255, 255);
+  color: #ff4eb5;
   border-radius: 15px;
   padding: 30px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -51,39 +66,30 @@ main {
 h1 {
   margin-bottom: 20px;
   font-size: 2.5em;
-}
-
-.header-link {
-  font-family: 'Pacifico';
-  color: white;
-  text-decoration: none;
-  font-size: 2.5rem;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-  font-size: 4rem;
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
-  text-decoration: none;
-}
-.header-link:visited,
-.header-link:hover,
-.header-link:active {
-  color: white;
-  text-decoration: none;
+  background-image: linear-gradient(135deg, #ff9ed7, #ff4eb5, #7b6cff, #1600d9);
+  -webkit-background-clip: text;
 }
 
 .willkommen {
   font-family: 'Caveat';
   font-size: 4rem;
-  color: white;
+  color: #ff4eb5;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
   margin-bottom: 0.5em;
+  background-image: linear-gradient(135deg, #ff9ed7, #ff4eb5, #7b6cff, #1600d9);
+  -webkit-background-clip: text;
+  color: transparent;
 }
 
 .willkommensubtext {
   font-family: 'Caveat', cursive;
   font-size: 2rem;
-  color: #f0f0f0;
+  color: #000000;
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
   margin-bottom: 1.5em;
+  background-image: linear-gradient(135deg, #ff9ed7, #ff4eb5, #7b6cff, #1600d9);
+  -webkit-background-clip: text;
+  color: transparent;
 }
 
 .start-button {
