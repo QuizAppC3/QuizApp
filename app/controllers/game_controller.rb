@@ -6,11 +6,12 @@ class GameController < ApplicationController
 
 def start
   @game = Game.create(score: 0, active: true)
-  session[:question_count] = 0
+  session[:question_counter] = 0
+  session[:score] = 0             
   redirect_to game_path
 end
 
-  def next_question
+def next_question
   session[:question_counter] ||= 0
   session[:question_counter] += 1
 
