@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
   get 'game/start', to: 'game#start', as: 'game_start'
   get 'game', to: 'game#index'
+  get 'game/next_question', to: 'game#next_question', as: 'game_next_question'
   post 'game/next_question', to: 'game#next_question'
   post 'game/answer',       to: 'game#answer',        as: 'game_answer'
   get 'game/result', to: 'game#result', as: 'game_result'

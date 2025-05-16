@@ -5,18 +5,20 @@ class GameController < ApplicationController
   end
 
 def start
-  @game = Game.create(score: 0, active: true)
+  session[:total_questions] = params[:total_questions].to_i
   session[:question_counter] = 0
   session[:score] = 0
-  session[:asked_questions] = []  # ← Reset!            
+  session[:asked_questions] = []
+  @game = Game.create(score: 0, active: true)
   redirect_to game_path
 end
+
 
 def next_question
   session[:question_counter] ||= 0
   session[:question_counter] += 1
 
-  if session[:question_counter] > 10
+  if session[:question_counter] == session[:total_questions]
     redirect_to game_result_path
     return
   end
