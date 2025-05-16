@@ -1,0 +1,28 @@
+name: Check Changes in Repo
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  deploy-on-ubuntu:
+    runs-on: self-hosted
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Pull latest changes
+        run: git pull origin main
+
+      - name: Copy files to deployment directory
+        run: sudo rsync -a $GITHUB_WORKSPACE/ /QuizApp/
+
+      - name: Set permissions
+        run: |
+          sudo chown -R www-data:www-data /QuizApp/
+          sudo chmod -R 775 /QuizApp/
+
+      - name: start rails server
+        run: rails server
