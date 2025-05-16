@@ -36,8 +36,6 @@ def next_question
   end
 end
 
-
-
   def answer
   @question = Question.find(params[:question_id])
   @answered = true
