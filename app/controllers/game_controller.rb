@@ -7,7 +7,8 @@ class GameController < ApplicationController
 def start
   @game = Game.create(score: 0, active: true)
   session[:question_counter] = 0
-  session[:score] = 0             
+  session[:score] = 0
+  session[:asked_questions] = []  # ← Reset!            
   redirect_to game_path
 end
 
@@ -17,12 +18,22 @@ def next_question
 
   if session[:question_counter] > 10
     redirect_to game_result_path
-  else
-    @question = Question.order("RANDOM()").first
+    return
+  end
+
+  asked_ids = session[:asked_questions] || []
+  @question = Question.where.not(id: asked_ids).order("RANDOM()").first
+
+  if @question
+    session[:asked_questions] << @question.id
     @answered = false
     render :index
+  else
+    flash[:alert] = "Nicht genügend Fragen verfügbar."
+    redirect_to game_result_path
   end
 end
+
 
 
   def answer
