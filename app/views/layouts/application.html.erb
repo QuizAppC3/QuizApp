@@ -7,10 +7,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat&family=Pacifico&family=Press+Start+2P&display=swap" rel="stylesheet">
+
 </head>
 <body>
   <header>
-    <h1> <%= link_to "Quiz App", root_path %> </h>  
+    <h1> <%= link_to "Quiz App", root_path, class: "header-link" %> </h>  
   </header>
   <main>
     <div class="content-container">
