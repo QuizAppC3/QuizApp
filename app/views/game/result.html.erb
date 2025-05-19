@@ -2,7 +2,7 @@
 
 <p>Dein Endstand: <strong><%= @game.score %> Punkte</strong></p>
 
-<% if @game.score >= 80 %>
+<% if @game.score >= (session[:total_questions] * 10 / 2)%>
   <p>🎉 Glückwunsch! Super gemacht! 🎉</p>
 <% else %>
   <p>Gut gespielt – beim nächsten Mal wird’s besser!</p>
