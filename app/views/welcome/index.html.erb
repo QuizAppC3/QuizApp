@@ -2,14 +2,25 @@
 <html>
 <head>
   <title>Willkommen zum Quiz!</title>
-  <%= stylesheet_link_tag 'application', media: 'all' %>
+  <%= stylesheet_link_tag 'application', media: 'all' %> 
 </head>
 <body>
   <div class="container">
     <header>
       <h1 class="willkommen">Willkommen zum spannenden Quiz!</h1>
-      <p class=willkommensubtext>Teste dein Wissen und hab Spaß!</p>
-      <%= button_to 'Spiel starten', game_path, method: :get, class: "start-button" %>
+      <p class="willkommensubtext">Teste dein Wissen und hab Spaß!</p>
+
+      <%= form_with url: game_start_path, method: :get, local: true, html: { class: "quiz-start-form" } do %>
+        <div class="form-group">
+          <label for="total_questions" class="form-label">Wie viele Fragen möchtest du spielen?</label>
+          <%= number_field_tag :total_questions, 5, min: 1, required: true, class: "form-input" %>
+        </div>
+
+        <div class="form-group">
+          <%= submit_tag "Spiel starten", class: "start-button" %>
+        </div>
+      <% end %>
+
     </header>
 
     <footer>
