@@ -10,7 +10,7 @@ def start
   session[:score] = 0
   session[:asked_questions] = []
   @game = Game.create(score: 0, active: true)
-  redirect_to game_path
+  redirect_to categories_path
 end
 
 
