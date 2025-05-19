@@ -1,6 +1,6 @@
 class CategoriesController < ApplicationController
   def index
-    @unique_categories = Question.distinct.pluck(:kategorie)
+    @unique_categories = Question.where.not(kategorie: nil).distinct.pluck(:kategorie)  
   end
 
   def auswahl
