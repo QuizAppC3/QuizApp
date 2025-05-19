@@ -24,7 +24,17 @@ def next_question
   end
 
   asked_ids = session[:asked_questions] || []
+  selected_categories = session[:selected_categories]
   @question = Question.where.not(id: asked_ids).order("RANDOM()").first
+
+  if selected_categories.present?
+    @question = Question.where.not(id: asked_ids)
+                        .where(kategorie: selected_categories)
+                        .order("RANDOM()")
+                        .first
+  else
+    @question = Question.where.not(id: asked_ids).order("RANDOM()").first
+  end
 
   if @question
     session[:asked_questions] << @question.id
