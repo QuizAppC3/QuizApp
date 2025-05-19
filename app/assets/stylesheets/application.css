@@ -104,3 +104,26 @@ h1 {
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
+
+.form-label {
+  color: black;
+  font-family: "Press Start 2P";
+  font-size: 2rem;
+}
+
+.form-input {
+  display: block;
+  width: 70%;
+  max-width: 300px;
+  padding: 8px 12px;
+  margin: 0 auto 12px auto;
+  border: 1px solid #adadad;
+  border-radius: 4px;
+  font-size: 18px;
+  line-height: 1.4;
+  color: #222;
+  background-color: #fff;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  font-family: "Press Start 2P", monospace;
+}
