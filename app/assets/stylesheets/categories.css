@@ -1,0 +1,31 @@
+.category-grid {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.category-item {
+  list-style-type: none; /* Entfernt sicherheitshalber alle Listenpunkte */
+  padding: 0;
+  margin: 0;
+}
+
+.hidden-checkbox {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.category-item label.category-label { /* Wichtig: Spezifischer Selektor */
+  display: block; /* Füllt die Breite des li aus */
+  padding: 10px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+
+input[type="checkbox"]:checked + label.category-label { /* Angepasster Selektor */
+  background-color: #f0f0f0; /* Beispiel für eine visuelle Rückmeldung */
+  border-color: #999;
+  /* Füge hier weitere Stile für den ausgewählten Zustand hinzu */
+}

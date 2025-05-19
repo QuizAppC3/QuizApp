@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Wähle deine Kategorie!</title>
+  <%= stylesheet_link_tag 'categories', media: 'all' %>
+</head>
+
+<%= form_tag('/categories/auswahl', method: 'post') do %>
+  <ul class="category-grid">
+    <% @unique_categories.each do |kategorie| %>
+      <li class="category-item">
+        <%= check_box_tag "selected_categories[]", kategorie, false, id: "category_#{kategorie.parameterize}" %>
+        <%= label_tag "category_#{kategorie.parameterize}", kategorie, class: 'category-label' %>
+      </li>
+    <% end %>
+  </ul>
+  <%= submit_tag 'Auswahl bestätigen' %>
+<% end %>

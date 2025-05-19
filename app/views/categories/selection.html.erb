@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Ausgewählte Kategorien</title>
+  <%= stylesheet_link_tag 'application', media: 'all' %>
+  <%= stylesheet_link_tag 'categories', media: 'all' %>
+</head>
+<body>
+  <div class="container">
+    <h1>Ausgewählte Kategorien</h1>
+
+    <% if @selected_categories.present? %>
+      <p>Du hast folgende Kategorien ausgewählt:</p>
+      <ul>
+        <% @selected_categories.each do |kategorie| %>
+          <li><%= kategorie %></li>
+        <% end %>
+      </ul>
+    <% else %>
+      <p>Du hast keine Kategorien ausgewählt.</p>
+    <% end %>
+
+    <%= link_to 'Zurück zur Auswahl', categories_index_path %>
+  </div>
+</body>
+</html>
