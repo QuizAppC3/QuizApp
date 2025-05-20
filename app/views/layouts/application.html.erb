@@ -8,12 +8,23 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <link href="https://fonts.googleapis.com/css2?family=Caveat&family=Pacifico&family=Press+Start+2P&display=swap" rel="stylesheet">
-
 </head>
+
 <body>
   <header>
-    <h1> <%= link_to "Quiz App", root_path, class: "header" %> </h>  
+    <h1><%= link_to "Quiz App", root_path, class: "header" %></h1>
+
+    <nav class="user-nav">
+      <% if user_signed_in? %>
+        <span>Willkommen, <%= current_user.email %></span> |
+        <%= link_to "Logout", destroy_user_session_path, method: :delete %>
+      <% else %>
+        <%= link_to "Login", new_user_session_path %> |
+        <%= link_to "Registrieren", new_user_registration_path %>
+      <% end %>
+    </nav>
   </header>
+
   <main>
     <div class="content-container">
       <%= yield %>

@@ -3,7 +3,7 @@
 <% current_game = Game.last %>
 <p>
   <strong>Punktestand:</strong> <%= current_game&.score || 0 %>
-  <strong>Frage:</strong> <%= (session[:question_counter])  %> / <%= session[:total_questions] %>
+  <strong>Frage:</strong> <%= (session[:question_counter]) + 1 %> / <%= session[:total_questions] %>
 
 
 </p>

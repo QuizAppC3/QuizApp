@@ -1,4 +1,5 @@
 class GameController < ApplicationController
+    before_action :authenticate_user!
 
   def index
     load_random_question
@@ -9,14 +10,17 @@ def start
   session[:question_counter] = 0
   session[:score] = 0
   session[:asked_questions] = []
-  @game = Game.create(score: 0, active: true)
+
+  @game = current_user.games.create!(score: 0, active: true)  # <- wichtig
+  session[:game_id] = @game.id
+
   redirect_to categories_path
 end
 
 
+
 def next_question
   session[:question_counter] ||= 0
-  session[:question_counter] += 1
 
   if session[:question_counter] == session[:total_questions]
     redirect_to game_result_path
@@ -29,6 +33,7 @@ def next_question
   if @question
     session[:asked_questions] << @question.id
     @answered = false
+    session[:question_counter] += 1  # Zähler NACH Ausgabe der Frage erhöhen
     render :index
   else
     flash[:alert] = "Nicht genügend Fragen verfügbar."
@@ -36,7 +41,7 @@ def next_question
   end
 end
 
-  def answer
+def answer
   @question = Question.find(params[:question_id])
   @answered = true
 
@@ -44,18 +49,29 @@ end
     flash[:notice] = "Richtig!"
     session[:score] ||= 0
     session[:score] += 10
-    Game.last.update(score: session[:score])
   else
     flash[:alert] = "Falsch! Richtige Antwort: #{@question.korrekt}"
   end
 
-  redirect_to game_path(answered: true)  # optional redirect
+  # aktuelles Game-Objekt aktualisieren
+  if session[:game_id]
+    game = current_user.games.find_by(id: session[:game_id])
+    game.update(score: session[:score]) if game
+  end
+
+  redirect_to game_path(answered: true)
 end
 
 
-    def result
-        @game = Game.last
-    end
+
+def result
+  @game = current_user.games.find_by(id: session[:game_id])
+
+  if @game
+    @game.update(active: false)
+  end
+end
+
 
   private
 
