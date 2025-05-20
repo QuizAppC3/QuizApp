@@ -1,0 +1,33 @@
+<div style="max-width: 600px; margin: 0 auto; text-align: center;">
+  <h2>Profil</h2>
+
+  <p><strong>Email:</strong> <%= @user.email %></p>
+  <p><strong>Mitglied seit:</strong> <%= @user.created_at.to_date %></p>
+
+  <h3>Spiel-Statistik</h3>
+
+  <% if @games.any? %>
+    <table style="margin: 0 auto;">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Datum</th>
+          <th>Punkte</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @games.each_with_index do |game, index| %>
+          <tr>
+            <td><%= index + 1 %></td>
+            <td><%= game.created_at.strftime("%d.%m.%Y %H:%M") %></td>
+            <td><%= game.score %></td>
+            <td><%= game.active ? "Aktiv" : "Beendet" %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <p>Du hast noch keine Spiele gespielt.</p>
+  <% end %>
+</div>
