@@ -28,18 +28,31 @@ def next_question
   end
 
   asked_ids = session[:asked_questions] || []
-  @question = Question.where.not(id: asked_ids).order("RANDOM()").first
+  selected_categories = session[:selected_categories]
+
+  # Frage je nach gewählter Kategorie laden
+  if selected_categories.present?
+    @question = Question.where.not(id: asked_ids)
+                        .where(kategorie: selected_categories)
+                        .order("RANDOM()")
+                        .first
+  else
+    @question = Question.where.not(id: asked_ids)
+                        .order("RANDOM()")
+                        .first
+  end
 
   if @question
     session[:asked_questions] << @question.id
     @answered = false
-    session[:question_counter] += 1  # Zähler NACH Ausgabe der Frage erhöhen
+    session[:question_counter] += 1  # Zähler erst nach Ausgabe der Frage erhöhen
     render :index
   else
     flash[:alert] = "Nicht genügend Fragen verfügbar."
     redirect_to game_result_path
   end
 end
+
 
 def answer
   @question = Question.find(params[:question_id])
