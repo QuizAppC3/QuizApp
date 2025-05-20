@@ -4,7 +4,8 @@ class CategoriesController < ApplicationController
   end
 
   def auswahl
-    @selected_categories = params[:selected_categories] || []
+    session[:selected_categories] = params[:selected_categories] || []
+    @selected_categories = session[:selected_categories]
     render 'selection'
   end
 end

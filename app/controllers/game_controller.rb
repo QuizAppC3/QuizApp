@@ -30,16 +30,13 @@ def next_question
   asked_ids = session[:asked_questions] || []
   selected_categories = session[:selected_categories]
 
-  # Frage je nach gewählter Kategorie laden
   if selected_categories.present?
     @question = Question.where.not(id: asked_ids)
                         .where(kategorie: selected_categories)
                         .order("RANDOM()")
                         .first
   else
-    @question = Question.where.not(id: asked_ids)
-                        .order("RANDOM()")
-                        .first
+    @question = Question.where.not(id: asked_ids).order("RANDOM()").first
   end
 
   if @question
