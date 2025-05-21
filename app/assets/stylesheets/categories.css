@@ -1,11 +1,11 @@
 .category-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 15px;
   padding: 20px;
   list-style: none;
   margin: 0 auto;
-  max-width: 800px;
+  max-width: 700px;
 }
 
 .category-item {
@@ -22,17 +22,17 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 120px;
-  padding: 20px;
-  font-size: 1.2rem;
-  font-weight: bold;
+  height: 80px;
+  padding: 10px;
+  font-size: 1rem;
+  font-weight: 600;
   background: linear-gradient(135deg, #fce4ec, #f8bbd0);
-  border: 3px solid #e1bee7;
-  border-radius: 15px;
+  border: 2px solid #e1bee7;
+  border-radius: 12px;
   transition: all 0.3s ease;
   text-align: center;
   color: #d81b60;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   cursor: pointer;
 }
 
@@ -41,19 +41,18 @@ input[type="checkbox"]:checked + .category-label {
   color: white;
   border-color: #ab47bc;
   transform: scale(1.02);
-  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
-/* Moderner Submit-Button */
 input[type="submit"] {
   display: block;
-  margin: 30px auto;
-  padding: 15px 30px;
-  font-size: 1.1rem;
+  margin: 25px auto;
+  padding: 12px 25px;
+  font-size: 1rem;
   background: #ab47bc;
   color: white;
   border: none;
-  border-radius: 10px;
+  border-radius: 8px;
   cursor: pointer;
   transition: background 0.3s ease;
 }
