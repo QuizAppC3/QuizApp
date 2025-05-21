@@ -133,3 +133,41 @@ h1 {
   font-family: sans-serif;
   font-size: 14px;
 }
+.profile-card {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 15px 20px;
+  text-align: center;
+  min-width: 200px;
+  z-index: 1000;
+}
+
+.profile-label {
+  font-weight: 600;
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.profile-email {
+  font-size: 0.95rem;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.logout-button {
+  display: inline-block;
+  padding: 6px 12px;
+  background: #d81b60;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 6px;
+  transition: background 0.3s ease;
+}
+
+.logout-button:hover {
+  background: #ad1457;
+}
