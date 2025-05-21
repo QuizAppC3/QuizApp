@@ -173,35 +173,38 @@ h1 {
   background: #ad1457;
 }
 
-.login-card {
-  position: absolute;
-  top: 20px;
-  right: 20px;
+.auth-card {
   background: #ffffff;
   border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  padding: 20px 25px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  padding: 24px 32px;
   text-align: center;
   font-family: 'Helvetica Neue', sans-serif;
+  max-width: 320px;
+  margin: 40px auto;
 }
 
-.login-card h2 {
-  margin-bottom: 15px;
-  font-size: 1.3rem;
+.auth-card h2 {
+  font-size: 1.5rem;
   color: #333;
+  margin-bottom: 20px;
   font-weight: 600;
 }
 
 .auth-button {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  background: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  padding: 20px 25px;
-  text-align: center;
-  font-family: 'Helvetica Neue', sans-serif;
+  display: block;
+  width: 100%;
+  margin: 10px 0;
+  padding: 12px;
+  background: #007bff;
+  color: white;
+  text-decoration: none;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.3s ease;
 }
 
 .auth-button:hover {
