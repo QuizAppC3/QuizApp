@@ -6,11 +6,10 @@
 </head>
 <body>
 
-  <!-- Profilkarte oben rechts -->
-  <div class="profile-card">
-    <div class="profile-name"><%= current_user.name %></div>
-    <div class="profile-email"><%= current_user.email %></div>
-  </div>
+<div class="profile-card">
+  <p>Angemeldet als:</p>
+  <p><%= current_user.email %></p>
+</div>
 
   <!-- Formular zur Kategorieauswahl -->
   <%= form_tag('/categories/auswahl', method: 'post') do %>
