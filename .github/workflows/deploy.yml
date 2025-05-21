@@ -28,6 +28,7 @@ jobs:
           sudo -u postgres createuser azureuser --superuser --pwprompt
           export DB_USERNAME=azureuser export DB_PASSWORD=PnSulZMF6HkerC7vFQ8V
           export GEM_HOME="$HOME/.gem"
+          bundle install
           RAILS_ENV=production bundle install
           bundle install --path vendor/bundle
           RAILS_ENV=production rails assets:precompile
