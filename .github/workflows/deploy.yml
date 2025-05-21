@@ -22,11 +22,10 @@ jobs:
         port: 22
         script: |
           cd /var/www/quizapp/code
-          git reset --hard
           git pull origin main
-          export RAILS_ENV=production
-          bundle install --deployment
-          rails db:migrate
-          rails assets:precompile
-          systemctl restart nginx
-          passenger restart
+          RAILS_ENV=production bundle install
+          RAILS_ENV=production rails db:migrate
+          RAILS_ENV=productionrails assets:precompile
+          sudo systemctl restart nginx
+          passenger stop
+          passenger start
