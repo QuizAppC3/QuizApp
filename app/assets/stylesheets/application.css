@@ -173,15 +173,16 @@ h1 {
   background: #ad1457;
 }
 
-.auth-card {
+.login-card {
+  position: absolute;
+  top: 20px;
+  right: 20px;
   background: #ffffff;
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  padding: 24px 32px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px 25px;
   text-align: center;
   font-family: 'Helvetica Neue', sans-serif;
-  max-width: 320px;
-  margin: 40px auto;
 }
 
 .auth-card h2 {
