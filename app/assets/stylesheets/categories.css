@@ -1,31 +1,63 @@
 .category-grid {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+  padding: 20px;
+  list-style: none;
+  margin: 0 auto;
+  max-width: 800px;
 }
 
 .category-item {
-  list-style-type: none; /* Entfernt sicherheitshalber alle Listenpunkte */
-  padding: 0;
-  margin: 0;
+  position: relative;
 }
 
-.hidden-checkbox {
+.category-item input[type="checkbox"] {
   position: absolute;
   opacity: 0;
-  width: 0;
-  height: 0;
-}
-
-.category-item label.category-label { /* Wichtig: Spezifischer Selektor */
-  display: block; /* Füllt die Breite des li aus */
-  padding: 30px;
-  border: 5px solid #ccc;
   cursor: pointer;
 }
 
-input[type="checkbox"]:checked + label.category-label { /* Angepasster Selektor */
-  background-color: #f0f0f0; /* Beispiel für eine visuelle Rückmeldung */
-  border-color: #999;
-  /* Füge hier weitere Stile für den ausgewählten Zustand hinzu */
+.category-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 120px;
+  padding: 20px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  background: linear-gradient(135deg, #fce4ec, #f8bbd0);
+  border: 3px solid #e1bee7;
+  border-radius: 15px;
+  transition: all 0.3s ease;
+  text-align: center;
+  color: #d81b60;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+
+input[type="checkbox"]:checked + .category-label {
+  background: linear-gradient(135deg, #ce93d8, #ba68c8);
+  color: white;
+  border-color: #ab47bc;
+  transform: scale(1.02);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* Moderner Submit-Button */
+input[type="submit"] {
+  display: block;
+  margin: 30px auto;
+  padding: 15px 30px;
+  font-size: 1.1rem;
+  background: #ab47bc;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+input[type="submit"]:hover {
+  background: #8e24aa;
 }
