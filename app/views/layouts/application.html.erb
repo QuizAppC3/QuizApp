@@ -21,13 +21,14 @@
     <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "logout-button" %>
   </div>
 <% else %>
-  <main>
-  <div class="auth-card">
-    <h2>Willkommen!</h2>
-    <%= link_to "Login", new_user_session_path, class: "auth-button" %>
+ <div class="auth-card">
+  <h2>Willkommen!</h2>
+  <div style="text-align: center;">
+    <%= link_to "Login", new_user_session_path, class: "auth-button" %><br>
     <%= link_to "Registrieren", new_user_registration_path, class: "auth-button" %>
   </div>
-</main>
+</div>
+
 
 
 <% end %>

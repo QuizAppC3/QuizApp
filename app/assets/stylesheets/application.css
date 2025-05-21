@@ -192,10 +192,8 @@ h1 {
 }
 
 .auth-button {
-  display: block;
-  width: 100%;
-  margin: 10px 0;
-  padding: 12px;
+  display: inline-block;  /* statt block */
+  padding: 12px 24px;
   background: #007bff;
   color: white;
   text-decoration: none;
@@ -205,7 +203,9 @@ h1 {
   font-weight: 500;
   cursor: pointer;
   transition: background 0.3s ease;
+  margin: 8px auto;
 }
+
 
 .auth-button:hover {
   background: #0056b3;
