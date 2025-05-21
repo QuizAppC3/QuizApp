@@ -127,3 +127,9 @@ h1 {
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
   font-family: "Press Start 2P", monospace;
 }
+.user-nav {
+  text-align: right;
+  margin: 10px 20px;
+  font-family: sans-serif;
+  font-size: 14px;
+}

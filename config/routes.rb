@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
+  resources :tasks
+  devise_for :users
   get "categories/index"
   get "welcome/index"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   
   root 'welcome#index' # anfragen auf root url werden auf welcome page geleitet
-
+  get 'profile', to: 'users#profile'
   get '/categories', to: 'categories#index'
   post 'categories/auswahl'
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

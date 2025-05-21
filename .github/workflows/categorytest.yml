@@ -1,0 +1,64 @@
+# .github/workflows/test.yml
+
+name: Rails CI
+
+on:
+  push:
+    branches: [ "main", "master", "pipeline" ]
+  pull_request:
+    branches: [ "main", "master" ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:14-alpine
+        env:
+          POSTGRES_DB: quizapp_test # <-- WICHTIG: Angepasst an database.yml
+          POSTGRES_USER: github_actions_user # <-- NEU: Ein Benutzername für GH Actions
+          POSTGRES_PASSWORD: supersecurepassword # <-- NEU: Ein Passwort für GH Actions
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.2.3'
+          bundler-cache: true
+
+      - name: Wait for PostgreSQL
+        run: |
+          for i in $(seq 1 10); do
+            nc -z localhost 5432 && break
+            echo "Waiting for PostgreSQL... ($i/10)"
+            sleep 2
+          done
+
+      - name: Database setup
+        env:
+          RAILS_ENV: test
+          DB_USERNAME: github_actions_user # <-- WICHTIG: Passt zu services.postgres.env.POSTGRES_USER
+          DB_PASSWORD: supersecurepassword # <-- WICHTIG: Passt zu services.postgres.env.POSTGRES_PASSWORD
+          DB_HOST: localhost # <-- WICHTIG: Passt zu database.yml host default
+        run: |
+          bundle exec rails db:create
+          bundle exec rails db:schema:load
+
+      - name: Run tests
+        env:
+          RAILS_ENV: test
+          DB_USERNAME: github_actions_user # <-- WICHTIG: Passt zu services.postgres.env.POSTGRES_USER
+          DB_PASSWORD: supersecurepassword # <-- WICHTIG: Passt zu services.postgres.env.POSTGRES_PASSWORD
+          DB_HOST: localhost # <-- WICHTIG: Passt zu database.yml host default
+        run: bundle exec rails test
