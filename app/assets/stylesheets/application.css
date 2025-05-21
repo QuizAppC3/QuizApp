@@ -210,4 +210,50 @@ h1 {
 .auth-button:hover {
   background: #0056b3;
 }
+.top-right-auth {
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 10px 16px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  z-index: 1001;
+  font-family: 'Helvetica Neue', sans-serif;
+}
+
+.top-right-auth .auth-email {
+  font-weight: 600;
+  color: #333;
+  margin-right: 10px;
+  font-size: 0.95rem;
+}
+
+.top-right-auth .auth-button {
+  padding: 8px 12px;
+  background: #007bff;
+  color: white;
+  text-decoration: none;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.top-right-auth .auth-button:hover {
+  background: #0056b3;
+}
+
+.top-right-auth .auth-button.logout {
+  background: #d81b60;
+}
+
+.top-right-auth .auth-button.logout:hover {
+  background: #ad1457;
+}
 

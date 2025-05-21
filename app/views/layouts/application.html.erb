@@ -14,20 +14,17 @@
   <header>
     <h1><%= link_to "Quiz App", root_path, class: "header" %></h1>
 
-<% if user_signed_in? %>
-  <div class="profile-card">
-    <p class="profile-label">Angemeldet als:</p>
-    <p class="profile-email"><%= current_user.email %></p>
-    <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "logout-button" %>
-  </div>
-<% else %>
-<div class="login-card">
-  <h2>Willkommen!</h2>
-  <%= link_to "Login", new_user_session_path, class: "auth-button" %>
-  <%= link_to "Registrieren", new_user_registration_path, class: "auth-button" %>
+
+<div class="top-right-auth">
+  <% if user_signed_in? %>
+    <span class="auth-email"><%= current_user.email %></span>
+    <%= link_to "Profil", edit_user_registration_path, class: "auth-button" %>
+    <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "auth-button logout" %>
+  <% else %>
+    <%= link_to "Login", new_user_session_path, class: "auth-button" %>
+    <%= link_to "Registrieren", new_user_registration_path, class: "auth-button" %>
+  <% end %>
 </div>
-
-
 
 
 <% end %>
