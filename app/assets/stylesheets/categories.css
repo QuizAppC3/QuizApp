@@ -60,19 +60,3 @@ input[type="submit"] {
 input[type="submit"]:hover {
   background: #8e24aa;
 }
-
-.profile-card {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  background: #ffffff;
-  padding: 15px 20px;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  font-size: 0.9rem;
-  font-weight: 500;
-  color: #333;
-  z-index: 1000;
-  min-width: 200px;
-  text-align: center;
-}

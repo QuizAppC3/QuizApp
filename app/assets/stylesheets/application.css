@@ -134,7 +134,7 @@ h1 {
   font-size: 14px;
 }
 .profile-card {
-  position: absolute;
+  position: fixed;
   top: 15px;
   right: 15px;
   background: #ffffff;
@@ -160,6 +160,7 @@ h1 {
 
 .logout-button {
   display: inline-block;
+  margin-top: 5px;
   padding: 6px 12px;
   background: #d81b60;
   color: #fff;
