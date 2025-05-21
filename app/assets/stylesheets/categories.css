@@ -19,8 +19,8 @@
 
 .category-item label.category-label { /* Wichtig: Spezifischer Selektor */
   display: block; /* Füllt die Breite des li aus */
-  padding: 10px;
-  border: 1px solid #ccc;
+  padding: 30px;
+  border: 5px solid #ccc;
   cursor: pointer;
 }
 
