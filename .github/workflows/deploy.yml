@@ -13,7 +13,7 @@ jobs:
     - name: Checkout Repository
       uses: actions/checkout@v3
 
-   - name: SSH into Azure VM and Deploy
+    - name: SSH into Azure VM and Deploy
       uses: appleboy/ssh-action@master
       with:
       host: ${{ secrets.AZURE_HOST }}  # Stellt sicher, dass der Host korrekt geladen wird!
