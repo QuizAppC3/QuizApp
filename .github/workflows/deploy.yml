@@ -23,9 +23,11 @@ jobs:
         script: |
           cd /var/www/quizapp/code
           git pull origin main
+          export DB_PASSWORD=PnSulZMF6HkerC7vFQ8V
+          export GEM_HOME="$HOME/.gem"
           RAILS_ENV=production bundle install
-          RAILS_ENV=production rails db:migrate
           RAILS_ENV=productionrails assets:precompile
+          RAILS_ENV=production rails db:migrate
           sudo systemctl restart nginx
           passenger stop
           passenger start
