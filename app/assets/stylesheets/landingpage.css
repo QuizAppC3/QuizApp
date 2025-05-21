@@ -1,0 +1,123 @@
+/* landingpage.css */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    background-color: #007bff;
+    color: white;
+    padding: 1em 0;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Anpassungen für den h2-Titel im Header */
+header h2 {
+    font-size: 2em;
+    color: #ffd700; /* Goldene Farbe */
+    margin-bottom: 0.5em;
+}
+
+
+.container {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; /* Zentriert die Kindelemente horizontal in einer Spalten-Flexbox */
+    padding: 2em;
+    text-align: center;
+}
+
+p {
+    margin-bottom: 1.5em;
+    line-height: 1.6;
+    max-width: 600px;
+}
+
+.user-nav-wrapper {
+    background-color: white;
+    padding: 2.5em 3.5em;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    display: inline-block;
+    margin-top: 2em;
+    border: 2px solid #007bff;
+    /* Damit die Buttons im Wrapper zentriert sind, falls der Wrapper breiter als der Inhalt wird */
+    text-align: center;
+}
+
+.user-nav {
+    display: flex; /* Verwende Flexbox für die Navigationslinks */
+    flex-wrap: wrap; /* Erlaube Umbruch, falls der Platz eng wird */
+    justify-content: center; /* Zentriert die Elemente innerhalb der Nav-Leiste */
+    align-items: center; /* Vertikale Ausrichtung der Elemente */
+    gap: 20px; /* Abstand zwischen den Buttons/Elementen */
+}
+
+/* Styling für die Login/Registrieren-Links, damit sie wie Buttons aussehen */
+.user-nav a {
+    background-color: #007bff; /* Blauer Hintergrund für die Buttons */
+    color: white; /* Weiße Schriftfarbe */
+    padding: 15px 30px; /* Innenabstand für die Button-Größe */
+    border-radius: 8px; /* Leicht abgerundete Ecken */
+    font-size: 1.4em; /* Angepasste Schriftgröße für Buttons */
+    text-decoration: none; /* Keine Unterstreichung */
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease; /* Übergänge für Hover-Effekte */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Leichter Schatten für Button-Tiefe */
+    display: inline-block; /* Wichtig für Padding und Breite */
+}
+
+.user-nav a:hover {
+    background-color: #0056b3; /* Dunklerer Blauton beim Hover */
+    transform: translateY(-2px); /* Leichter "Pop"-Effekt */
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15); /* Schatten wird intensiver */
+}
+
+/* Styling für den "Willkommen, E-Mail"-Text */
+.user-nav span {
+    font-size: 1.4em; /* Angepasste Schriftgröße */
+    color: #555;
+    font-weight: normal; /* Normales Gewicht, da es kein Button ist */
+    margin: 0 10px; /* Etwas Abstand zu den Buttons */
+}
+
+/* Wenn der Benutzer eingeloggt ist, sollten die Links auch gestylt werden */
+.user-nav a[href$="/profile"],
+.user-nav a[data-method="delete"] { /* Zielt auf Profil und Logout ab */
+    background-color: #28a745; /* Grüne Farbe für Profil/Logout */
+    color: white;
+    padding: 15px 30px;
+    border-radius: 8px;
+    font-size: 1.4em;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    display: inline-block;
+}
+
+.user-nav a[href$="/profile"]:hover,
+.user-nav a[data-method="delete"]:hover {
+    background-color: #218838; /* Dunkleres Grün beim Hover */
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 1em 0;
+    margin-top: 2em;
+}
