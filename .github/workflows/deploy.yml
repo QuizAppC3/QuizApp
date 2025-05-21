@@ -1,0 +1,31 @@
+name: Auto-Deploy to Azure Production
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v3
+
+    - name: SSH into Azure VM and Deploy
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.AZURE_HOST }}
+        username: ${{ secrets.AZURE_USER }}
+        key: ${{ secrets.AZURE_SSH_KEY }}
+        script: |
+          cd /var/www/quizapp/code
+          git reset --hard
+          git pull origin main
+          export RAILS_ENV=production
+          bundle install --deployment
+          rails db:migrate
+          rails assets:precompile
+          systemctl restart nginx
+          passenger restart
