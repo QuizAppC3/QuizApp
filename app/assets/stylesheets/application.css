@@ -139,7 +139,7 @@ h1 {
   right: 15px;
   background: #ffffff;
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
   padding: 15px 20px;
   text-align: center;
   min-width: 200px;
@@ -171,4 +171,44 @@ h1 {
 
 .logout-button:hover {
   background: #ad1457;
+}
+
+.login-card {
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 16px 24px;
+  text-align: center;
+  z-index: 1000;
+  font-family: 'Helvetica Neue', sans-serif;
+  min-width: 220px;
+}
+
+.login-card h2 {
+  font-size: 1.2rem;
+  color: #333;
+  margin-bottom: 16px;
+  font-weight: 600;
+}
+
+.auth-button {
+  display: block;
+  width: 100%;
+  margin: 8px 0;
+  padding: 10px;
+  background: #007bff;
+  color: white;
+  text-decoration: none;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.auth-button:hover {
+  background: #0056b3;
 }
