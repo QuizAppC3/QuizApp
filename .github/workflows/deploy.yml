@@ -25,15 +25,13 @@ jobs:
           git pull origin main
           sudo apt install postgresql postgresql-contrib libpq-dev
           sudo systemctl start postgresql
-          sudo -u postgres createuser azureuser --superuser --pwprompt
           export DB_USERNAME=azureuser export DB_PASSWORD=PnSulZMF6HkerC7vFQ8V
           export GEM_HOME="$HOME/.gem"
           bundle install
           RAILS_ENV=production bundle install
-          bundle install --path vendor/bundle
           RAILS_ENV=production rails assets:precompile
           RAILS_ENV=production rails db:migrate
           RAILS_ENV=production rails db:seed
+          sudo fuser -k 3000/tcp
           sudo systemctl restart nginx
-          passenger stop
-          passenger start
+          passenger restart
