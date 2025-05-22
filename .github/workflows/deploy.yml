@@ -37,4 +37,4 @@ jobs:
           RAILS_ENV=production rails db:seed
           sudo fuser -k 3000/tcp
           sudo systemctl restart nginx
-          passenger restart
+          passenger start
