@@ -1,5 +1,5 @@
 <head>
-  <title><%= yield(:title) || "Registrieren" %></title>
+  <title><%= yield(:title) || "Deine App" %></title>
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
 
@@ -13,9 +13,9 @@
 </head>
 
 <div class="login-container">
-  <h2 class="login-title">Registrieren</h2>
+  <h2 class="login-title">Login</h2>
 
-  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "login-form" }) do |f| %>
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "login-form" }) do |f| %>
     <div class="form-group">
       <%= f.label :email, class: "form-label" %>
       <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-input" %>
@@ -23,18 +23,21 @@
 
     <div class="form-group">
       <%= f.label :password, class: "form-label" %>
-      <%= f.password_field :password, autocomplete: "new-password", class: "form-input" %>
+      <%= f.password_field :password, autocomplete: "current-password", class: "form-input" %>
     </div>
 
-    <div class="form-group">
-      <%= f.label :password_confirmation, class: "form-label" %>
-      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-input" %>
-    </div>
+    <% if devise_mapping.rememberable? %>
+      <div class="form-check">
+        <%= f.check_box :remember_me, class: "form-checkbox" %>
+        <%= f.label :remember_me, class: "form-label-inline" %>
+      </div>
+    <% end %>
 
     <div class="form-actions">
-      <%= f.submit "Registrieren", class: "btn btn-primary" %>
+      <%= f.submit "Einloggen", class: "btn btn-primary" %>
     </div>
   <% end %>
 
   <%= render "devise/shared/links" %>
 </div>
+
