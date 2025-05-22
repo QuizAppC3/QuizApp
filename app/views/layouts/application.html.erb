@@ -1,37 +1,34 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <title><%= yield(:title) || "Deine App" %></title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <link href="https://fonts.googleapis.com/css2?family=Caveat&family=Pacifico&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <title><%= yield(:title) || "Quiz App" %></title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
   <header>
-    <h1><%= link_to "Quiz App", root_path, class: "header" %></h1>
-
-
-<div class="top-right-auth">
-  <% if user_signed_in? %>
-    <span class="auth-email"><%= current_user.email %></span>
-    <%= link_to "Profil", profile_path, class: "auth-button" %>
-    <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "auth-button logout" %>
-  <% else %>
-    <%= link_to "Login", new_user_session_path, class: "auth-button" %>
-    <%= link_to "Registrieren", new_user_registration_path, class: "auth-button" %>
-  <% end %>
-</div>
-
+    <h1 class="app-title"><%= link_to "Quiz App", root_path %></h1>
+    <div class="auth-links">
+      <% if user_signed_in? %>
+        <span><%= current_user.email %></span>
+        <%= link_to "Profil", profile_path %>
+        <%= link_to "Logout", destroy_user_session_path, method: :delete %>
+      <% else %>
+        <%= link_to "Login", new_user_session_path %>
+        <%= link_to "Registrieren", new_user_registration_path %>
+      <% end %>
+    </div>
   </header>
 
-  <main>
-    <div class="content-container">
-      <%= yield %>
-    </div>
+  <main class="main-content">
+    <%= yield %>
   </main>
 </body>
 </html>
