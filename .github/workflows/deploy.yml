@@ -28,6 +28,7 @@ jobs:
           sudo gem install bundler
           bundle install
           export GEM_HOME="$HOME/.gem"
+          sudo gem cleanup
           sudo gem pristine pg --version 1.5.9
           sudo apt install postgresql postgresql-contrib libpq-dev --yes
           sudo systemctl start postgresql
