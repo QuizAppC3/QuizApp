@@ -24,8 +24,8 @@ jobs:
           cd /var/www/quizapp/code
           git pull origin main
           sudo apt autoremove --yes
-          gem install rails
-          gem install bundler
+          sudo gem install rails
+          sudo gem install bundler
           sudo apt install postgresql postgresql-contrib libpq-dev --yes
           sudo systemctl start postgresql
           export DB_USERNAME=azureuser export DB_PASSWORD=PnSulZMF6HkerC7vFQ8V
