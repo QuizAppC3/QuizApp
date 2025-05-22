@@ -117,3 +117,24 @@
 .btn:hover {
   background-color: #0056b3;
 }
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 6px;
+  text-align: center;
+  text-decoration: none; /* <-- Wichtig */
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  color: white;
+  border: none;
+}
+
+.btn-secondary {
+  background-color: #6c757d;
+  color: white;
+  border: none;
+}
