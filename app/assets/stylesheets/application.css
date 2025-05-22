@@ -204,3 +204,40 @@ h1 {
   background: #ad1457;
 }
 
+#für eine verbesserte Mobile Ansicht
+
+.login-container {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.form-input,
+.form-checkbox {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+}
+
+.btn {
+  padding: 12px;
+  font-size: 16px;
+  text-align: center;
+}
+
+@media (max-width: 600px) {
+  .login-container {
+    padding: 10px;
+  }
+
+  .btn {
+    font-size: 14px;
+    padding: 10px;
+  }
+}
