@@ -206,38 +206,40 @@ h1 {
 
 #für eine verbesserte Mobile Ansicht
 
-.login-container {
-  max-width: 400px;
+/* app/assets/stylesheets/application.scss */
+
+.container {
+  max-width: 600px;
   margin: 0 auto;
-  padding: 20px;
-}
-
-.login-form {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.form-input,
-.form-checkbox {
-  width: 100%;
   padding: 10px;
-  font-size: 16px;
 }
 
 .btn {
-  padding: 12px;
-  font-size: 16px;
+  padding: 12px 20px;
+  font-size: 1rem;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 200px;
+  margin: 10px auto;
+}
+
+.navbar {
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px;
+}
+
+.welcome-message {
   text-align: center;
+  padding: 20px 10px;
+}
+h1 {
+  font-size: clamp(1.5rem, 5vw, 3rem);
 }
 
 @media (max-width: 600px) {
-  .login-container {
-    padding: 10px;
-  }
-
   .btn {
-    font-size: 14px;
+    font-size: 0.9rem;
     padding: 10px;
   }
 }
