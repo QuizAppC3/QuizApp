@@ -29,8 +29,9 @@ jobs:
           sudo apt install postgresql postgresql-contrib libpq-dev --yes
           sudo systemctl start postgresql
           export DB_USERNAME=azureuser export DB_PASSWORD=PnSulZMF6HkerC7vFQ8V
-          export GEM_HOME="$HOME/.gem"
+          gem pristine pg --version 1.5.9
           sudo gem pristine --all
+          export GEM_HOME="$HOME/.gem"
           bundle install
           RAILS_ENV=production bundle install
           RAILS_ENV=production rails assets:precompile
@@ -38,4 +39,5 @@ jobs:
           RAILS_ENV=production rails db:seed
           sudo fuser -k 3000/tcp
           sudo systemctl restart nginx
+          passenger stop
           passenger start
