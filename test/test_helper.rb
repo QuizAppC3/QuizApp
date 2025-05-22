@@ -1,6 +1,11 @@
 ENV["RAILS_ENV"] ||= "test"
 require_relative "../config/environment"
 require "rails/test_help"
+require 'simplecov'
+SimpleCov.start 'rails'
+
+#Mindest Anforderung für Code Coverage festlegen
+#SimpleCov.minimum_coverage 90
 
 module ActiveSupport
   class TestCase

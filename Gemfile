@@ -59,6 +59,9 @@ group :development, :test do
   gem 'faker'
 
   gem "rails-controller-testing"
+
+  gem "simplecov", require: false
+  gem 'simplecov-html'
 end
 
 group :development do
