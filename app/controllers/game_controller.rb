@@ -22,31 +22,36 @@ end
 def next_question
   session[:question_counter] ||= 0
   session[:asked_questions] ||= []
-  asked_ids = session[:asked_questions]
-  selected_categories = session[:selected_categories]
 
-  if session[:question_counter] >= session[:total_questions]
-    redirect_to game_result_path and return
+
+  if session[:question_counter] == session[:total_questions]
+    redirect_to game_result_path
+    return
   end
 
-  @question = if selected_categories.present?
-    Question.where.not(id: asked_ids)
-            .where(kategorie: selected_categories)
-            .order("RANDOM()")
-            .first
+  asked_ids = session[:asked_questions] || []
+  selected_categories = session[:selected_categories]
+
+  if selected_categories.present?
+    @question = Question.where.not(id: asked_ids)
+                        .where(kategorie: selected_categories)
+                        .order("RANDOM()")
+                        .first
   else
-    Question.where.not(id: asked_ids).order("RANDOM()").first
+    @question = Question.where.not(id: asked_ids).order("RANDOM()").first
   end
 
   if @question
     session[:asked_questions] << @question.id
-    session[:question_counter] += 1
-    redirect_to game_path(answered: false)
+    @answered = false
+    session[:question_counter] += 1  # Zähler erst nach Ausgabe der Frage erhöhen
+    render :index
   else
     flash[:alert] = "Nicht genügend Fragen verfügbar."
     redirect_to game_result_path
   end
 end
+
 
 def answer
   @question = Question.find(params[:question_id])
