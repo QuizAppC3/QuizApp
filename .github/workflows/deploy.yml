@@ -18,6 +18,8 @@ jobs:
         username: ${{ secrets.AZURE_USER }}
         key: ${{ secrets.AZURE_SSH_KEY }}
         script: |
+          whoami
+          id
           cd /var/www/quizapp/
           ./deploy.sh
 
