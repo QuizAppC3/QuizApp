@@ -1,24 +1,27 @@
-# .github/workflows/deploy.yml
-name: Deploy to VM
+name: Deploy to Azure VM
 
 on:
   push:
     branches:
-      - main  # Oder der Branch, den du deployen willst
+      - main
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
       - name: Setup SSH key
         run: |
           mkdir -p ~/.ssh
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          echo "${{ secrets.AZURE_SSH_KEY }}" | tr -d '\r' > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan -H 74.235.228.194 >> ~/.ssh/known_hosts
 
-      - name: Run deploy script on remote VM
+      - name: Run deploy script on Azure VM
         run: ssh -o StrictHostKeyChecking=no azureuser@74.235.228.194 'bash /var/www/quizapp/deploy.sh'
+
 
 
