@@ -10,8 +10,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout Code
-      uses: actions/checkout@v3
 
     - name: Execute deployment script on Azure VM
       uses: appleboy/ssh-action@v1.0.0
