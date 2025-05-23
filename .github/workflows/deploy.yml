@@ -1,4 +1,4 @@
-name: Auto-Deploy to Azure Production
+name: Deploy to Azure VM
 
 on:
   push:
@@ -10,16 +10,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout Repository
+    - name: Checkout Code
       uses: actions/checkout@v3
 
-    - name: SSH into Azure VM and Deploy
-      uses: appleboy/ssh-action@master
+    - name: Execute deployment script on Azure VM
+      uses: appleboy/ssh-action@v1.0.0
       with:
-        host: ${{ secrets.AZURE_HOST }}  # Stellt sicher, dass der Host korrekt geladen wird!
+        host: ${{ secrets.AZURE_HOST }}
         username: ${{ secrets.AZURE_USER }}
         key: ${{ secrets.AZURE_SSH_KEY }}
-        port: 22
         script: |
           cd /var/www/quizapp/
           ./deploy.sh
+
