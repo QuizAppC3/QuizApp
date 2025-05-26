@@ -25,4 +25,11 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+  # Multiplayer-Routen
+  get  'game/multiplayer/new', to: 'game#create_multiplayer', as: 'new_multiplayer_game'
+  post 'game/multiplayer/start', to: 'game#start_multiplayer_game', as: 'start_multiplayer_game'
+  get  'game/join', to: 'multiplayer#join_game', as: 'join_game'
+  get  'game/lobby', to: 'game#lobby', as: 'game_lobby'
+  get 'game/multiplayer/waiting', to: 'multiplayer#waiting', as: 'multiplayer_waiting'
+
 end

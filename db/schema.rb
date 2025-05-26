@@ -10,9 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_05_26_135212) do
+ActiveRecord::Schema[8.0].define(version: 2025_05_26_143503) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
+
+  create_table "game_players", force: :cascade do |t|
+    t.bigint "game_id", null: false
+    t.bigint "user_id", null: false
+    t.integer "score"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["game_id"], name: "index_game_players_on_game_id"
+    t.index ["user_id"], name: "index_game_players_on_user_id"
+  end
 
   create_table "games", force: :cascade do |t|
     t.integer "score"
@@ -20,6 +30,10 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_26_135212) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
+    t.string "code"
+    t.bigint "host_id", null: false
+    t.index ["code"], name: "index_games_on_code", unique: true
+    t.index ["host_id"], name: "index_games_on_host_id"
     t.index ["user_id"], name: "index_games_on_user_id"
   end
 
@@ -58,6 +72,9 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_26_135212) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "game_players", "games"
+  add_foreign_key "game_players", "users"
   add_foreign_key "games", "users"
+  add_foreign_key "games", "users", column: "host_id"
   add_foreign_key "tasks", "users"
 end

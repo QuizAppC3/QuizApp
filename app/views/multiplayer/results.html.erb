@@ -1,0 +1,12 @@
+<h1>Spiel beendet!</h1>
+
+<h2>Ergebnisse</h2>
+<ol>
+  <% @players.each do |player| %>
+    <li>
+      <%= player.user.username %> – <%= player.score %> Punkte
+    </li>
+  <% end %>
+</ol>
+
+<%= link_to "Zurück zur Startseite", root_path %>
