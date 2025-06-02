@@ -1,29 +1,43 @@
-<h2>Sign up</h2>
+<head>
+  <title><%= yield(:title) || "Registrieren" %></title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= stylesheet_link_tag 'login', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat&family=Pacifico&family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
+<div class="login-container">
+  <h2 class="login-title">Registrieren</h2>
 
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "login-form" }) do |f| %>
+    <div class="form-group">
+      <%= f.label :email, class: "form-label" %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-input" %>
+    </div>
 
-<%= render "devise/shared/links" %>
+    <div class="form-group">
+      <%= f.label :password, class: "form-label" %>
+      <%= f.password_field :password, autocomplete: "new-password", class: "form-input" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :password_confirmation, class: "form-label" %>
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-input" %>
+    </div>
+
+    <div class="form-actions">
+      <%= f.submit "Registrieren", class: "btn btn-primary" %>
+    </div>
+
+    <div class="form-actions">
+      <%= link_to "Login", new_user_session_path, class: "btn btn-secondary" %>
+    </div>
+  <% end %>
+
+</div>
