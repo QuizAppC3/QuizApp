@@ -16,7 +16,6 @@ gem "turbo-rails"
 gem "stimulus-rails"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
-gem "debug"
 
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 # gem "bcrypt", "~> 3.1.7"
@@ -60,8 +59,9 @@ group :development, :test do
 
   gem "rails-controller-testing"
 
-  gem "simplecov", require: false
+  gem "simplecov" #Falls Fehler auftreten: eigentlich mit require:false, funktioniert aber nicht wegen application.rb Zeile 7
   gem 'simplecov-html'
+  gem 'simplecov_json_formatter'
 end
 
 group :development do
