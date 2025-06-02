@@ -60,3 +60,50 @@ input[type="submit"] {
 input[type="submit"]:hover {
   background: #8e24aa;
 }
+
+.category-boxes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+.category-box {
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 1rem 1.5rem;
+  font-weight: bold;
+  color: #e91e63;
+  text-align: center;
+  min-width: 150px;
+}
+
+.button-group {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.btn {
+  text-decoration: none;
+  background-color: #e91e63;
+  color: white;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #c2185b;
+}
+
+.btn-back {
+  background-color: #3f51b5;
+}
+
+.btn-back:hover {
+  background-color: #303f9f;
+}
