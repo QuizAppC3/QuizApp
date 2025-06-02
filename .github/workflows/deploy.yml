@@ -21,7 +21,7 @@ jobs:
           ssh-keyscan -H 74.235.228.194 >> ~/.ssh/known_hosts
 
       - name: Run deploy script on Azure VM
-        run: ssh -o StrictHostKeyChecking=no azureuser@74.235.228.194 'bash /var/www/quizapp/deploy.sh'
+        run: ssh -o StrictHostKeyChecking=no azureuser@74.235.228.194 'bash -l /var/www/quizapp/deploy.sh'
 
 
 
