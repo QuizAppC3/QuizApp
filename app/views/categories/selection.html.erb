@@ -6,22 +6,26 @@
   <%= stylesheet_link_tag 'categories', media: 'all' %>
 </head>
 <body>
-  <div class="container">
-    <h1>Ausgewählte Kategorien</h1>
+  <div class="content-container">
+    <div class="inner-box">
+      <h1>Ausgewählte Kategorien</h1>
 
-    <% if @selected_categories.present? %>
-      <p>Du hast folgende Kategorien ausgewählt:</p>
-      <ul>
-        <% @selected_categories.each do |kategorie| %>
-          <li><%= kategorie %></li>
-        <% end %>
-      </ul>
-    <% else %>
-      <p>Du hast keine Kategorien ausgewählt.</p>
-    <% end %>
+      <% if @selected_categories.present? %>
+        <p>Du hast folgende Kategorien ausgewählt:</p>
+        <ul>
+          <% @selected_categories.each do |kategorie| %>
+            <li><%= kategorie %></li>
+          <% end %>
+        </ul>
+      <% else %>
+        <p>Du hast keine Kategorien ausgewählt.</p>
+      <% end %>
 
-    <%= link_to 'Zurück zur Auswahl', categories_index_path %>
-    <%= link_to 'Weiter', game_next_question_path %>
+      <div class="link-group">
+      <%= link_to 'Zurück zur Auswahl', categories_index_path, class: 'btn-secondary' %>
+      <%= link_to 'Weiter', game_next_question_path, class: 'btn-primary' %>
+    </div>
+    </div>
   </div>
 </body>
 </html>
