@@ -3,11 +3,13 @@
 
   <% if @selected_categories.present? %>
     <p class="selection-subtext">Du hast folgende Kategorien ausgewählt:</p>
-    <ul class="category-list">
-      <% @selected_categories.each do |kategorie| %>
-        <li><%= kategorie %></li>
-      <% end %>
-    </ul>
+  <div class="category-grid">
+    <% @selected_categories.each do |kategorie| %>
+      <div class="category-item">
+        <span class="category-label"><%= kategorie %></span>
+    </div>
+  <% end %>
+  </div>
   <% else %>
     <p class="selection-subtext">Du hast keine Kategorien ausgewählt.</p>
   <% end %>
