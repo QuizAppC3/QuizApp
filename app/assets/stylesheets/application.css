@@ -256,14 +256,6 @@ footer {
   text-align: center;
 }
 
-.selection-title {
-  font-size: 2rem;
-  font-weight: bold;
-  background: linear-gradient(135deg, #ff4eb5, #7b6cff);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  margin-bottom: 1rem;
-}
 
 .selection-subtext {
   font-size: 1.1rem;
