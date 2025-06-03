@@ -1,7 +1,5 @@
-/* buttons.css */
-.start-button,
-.auth-button,
-.top-right-auth .auth-button {
+/* Start-Button groß und verspielt */
+.start-button {
   font-family: 'Press Start 2P';
   font-size: 2rem;
   background-color: #ff6f61;
@@ -14,16 +12,22 @@
   transition: background-color 0.3s ease;
 }
 
-.auth-button {
-  font-size: 1rem;
-  width: 100%;
-  margin: 10px 0;
-  padding: 12px;
-  background: #007bff;
-  border-radius: 8px;
+/* Auth-Button (z. B. Logout) kleiner und dezenter */
+.auth-button,
+.top-right-auth .auth-button {
+  font-family: 'Helvetica Neue', sans-serif;
+  font-size: 0.85rem;
+  padding: 6px 12px;
+  border-radius: 6px;
   font-weight: 500;
+  background: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s ease;
 }
 
+/* Hover-Zustände */
 .auth-button:hover {
   background: #0056b3;
 }
@@ -35,13 +39,4 @@
 .top-right-auth .auth-button.logout:hover,
 .logout-button:hover {
   background: #ad1457;
-}
-
-.btn {
-  padding: 12px 20px;
-  font-size: 1rem;
-  border-radius: 10px;
-  width: 100%;
-  max-width: 200px;
-  margin: 10px auto;
 }
