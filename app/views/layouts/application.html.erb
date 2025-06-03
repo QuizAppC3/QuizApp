@@ -6,8 +6,14 @@
     <%= csp_meta_tag %>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    
+    <%# WICHTIG: javascript_importmap_tags MUSS ZUERST KOMMEN %>
+    <%= javascript_importmap_tags %> 
+    
     <link href="https://fonts.googleapis.com/css2?family=Caveat&family=Pacifico&family=Press+Start+2P&display=swap" rel="stylesheet">
+    
+    <%# turbo_include_tags kann danach kommen, da es die Import Map nutzen wird %>
+    <%= turbo_include_tags %> 
 </head>
 
 <body>
@@ -22,6 +28,7 @@
       <% else %>
         <%= link_to "Login", new_user_session_path %> |
         <%= link_to "Registrieren", new_user_registration_path %>
+
       <% end %>
     </nav>
   </header>

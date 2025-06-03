@@ -21,23 +21,51 @@ class MultiplayerController < ApplicationController
 
   
 
-  def join_game
-    game = Game.find_by(code: params[:code])
+  def join_form
+end
 
-    if game && game.active
-      unless game.game_players.exists?(user: current_user)
-        GamePlayer.create!(game: game, user: current_user, score: 0)
-      end
-      redirect_to multiplayer_waiting_path(code: game.code)
-    else
-      redirect_to root_path, alert: "Spiel nicht gefunden."
+def join_game
+  game = Game.find_by(code: params[:code])
+  # Spieler anlegen, falls nicht da
+  player = game.game_players.find_or_create_by(user: current_user)
+
+  # Broadcast aktualisieren
+  Turbo::StreamsChannel.broadcast_replace_to(
+    "game_#{game.id}_players",
+    target: "player_list",
+    partial: "multiplayer/player_list",
+    locals: { players: game.game_players.includes(:user) }
+  )
+
+  redirect_to multiplayer_waiting_path(code: game.code)
+end
+
+
+
+
+
+
+
+
+ def start_game
+    @game = Game.find_by(code: params[:code])
+
+    # Stelle sicher, dass nur der Host das Spiel starten kann
+    unless @game.user == current_user
+      redirect_to multiplayer_waiting_path(code: @game.code), alert: "Nur der Host kann das Spiel starten."
+      return
     end
-  end
 
-  def start_game
-    game = Game.find_by(code: params[:code])
-    # TODO: Broadcast oder Redirect zu erster Frage
-    redirect_to multiplayer_question_path(code: game.code)
+    Turbo::StreamsChannel.broadcast_update_to( 
+      "game_#{@game.id}_players", 
+      target: "body", 
+  
+
+      partial: "multiplayer/redirect_to_question", 
+      locals: { question_path: multiplayer_question_path(code: @game.code) }
+    )
+
+    redirect_to multiplayer_question_path(code: @game.code)
   end
 
   def question

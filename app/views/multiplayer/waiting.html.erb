@@ -3,11 +3,14 @@
 <p><strong>Spielcode:</strong> <%= @game.code %></p>
 
 <h2>Spieler in der Lobby:</h2>
-<ul>
-  <% @players.each do |player| %>
-    <li><%= player.user.username %></li>
-  <% end %>
-</ul>
+
+<%= turbo_stream_from "game_#{@game.id}_players" %>
+
+<div id="player_list">
+  <%= render partial: "multiplayer/player_list", locals: { players: @players } %>
+</div>
+
+              <%= console %> 
 
 <% if @game.user == current_user %>
   <%= link_to "Spiel starten", start_multiplayer_game_path(code: @game.code), class: "btn" %>
