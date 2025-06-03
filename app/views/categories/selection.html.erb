@@ -1,19 +1,19 @@
-<div class="content-container">
-  <h1>Ausgewählte Kategorien</h1>
+<div class="selection-container">
+  <h1 class="selection-title">Ausgewählte Kategorien</h1>
 
   <% if @selected_categories.present? %>
-    <p>Du hast folgende Kategorien ausgewählt:</p>
-    <ul>
+    <p class="selection-subtext">Du hast folgende Kategorien ausgewählt:</p>
+    <ul class="category-list">
       <% @selected_categories.each do |kategorie| %>
         <li><%= kategorie %></li>
       <% end %>
     </ul>
   <% else %>
-    <p>Du hast keine Kategorien ausgewählt.</p>
+    <p class="selection-subtext">Du hast keine Kategorien ausgewählt.</p>
   <% end %>
 
-  <div style="margin-top: 20px;">
+  <div class="navigation-links">
     <%= link_to 'Zurück zur Auswahl', categories_index_path, class: 'btn-secondary' %>
-    <%= link_to 'Weiter', game_next_question_path, class: 'btn-primary', style: 'margin-left: 10px;' %>
+    <%= link_to 'Weiter', game_next_question_path, class: 'btn-primary' %>
   </div>
 </div>
