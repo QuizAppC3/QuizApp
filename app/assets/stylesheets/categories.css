@@ -107,3 +107,25 @@ input[type="submit"]:hover {
 .btn-back:hover {
   background-color: #303f9f;
 }
+.category-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  margin: 1.5rem 0;
+}
+
+.category-item {
+  background: linear-gradient(135deg, #ce93d8, #ba68c8);
+  border-radius: 12px;
+  padding: 1rem 2rem;
+  color: white;
+  font-weight: bold;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  min-width: 150px;
+  text-align: center;
+}
+
+.category-label {
+  font-size: 1.1rem;
+}
