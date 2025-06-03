@@ -1,39 +1,68 @@
-/* login.css */
-.top-right-auth {
-  position: fixed;
-  top: 15px;
-  right: 15px;
-  display: flex;
-  gap: 10px;
-  align-items: center;
-  background: #ffffff;
-  border-radius: 12px;
-  padding: 10px 16px;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-  z-index: 1001;
-  font-family: 'Helvetica Neue', sans-serif;
+.login-container {
+  max-width: 400px;
+  margin: 60px auto;
+  padding: 30px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
-.top-right-auth .auth-email {
-  font-weight: 600;
+.login-title {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 24px;
   color: #333;
-  margin-right: 10px;
-  font-size: 0.95rem;
 }
 
-.container {
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 1rem;
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-  margin-top: 2rem;
+.login-form .form-group {
+  margin-bottom: 15px;
 }
 
-@media (max-width: 600px) {
-  .btn {
-    font-size: 0.9rem;
-    padding: 10px;
-  }
+.form-label {
+  display: block;
+  margin-bottom: 5px;
+  color: #555;
+  font-weight: 600;
+}
+
+.form-input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+.form-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem; /* gleichmäßiger Abstand */
+  margin-top: 1.5rem;
+}
+
+.btn {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  box-sizing: border-box;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+}
+
+.btn-secondary {
+  background-color: #6c757d;
+  color: white;
 }
