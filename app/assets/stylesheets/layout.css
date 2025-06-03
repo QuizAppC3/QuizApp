@@ -1,13 +1,56 @@
 /* layout.css */
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 2rem;
-}
-
-.centered {
+body {
+  background-color: #579bf5;
+  background: linear-gradient(135deg, #ff9ed7, #ff4eb5 ,#7b6cff, #1600d9);
+  color: white;
+  font-family: sans-serif;
+  margin: 0;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+header {
+  background-color: #ffffff;
+  font-family: 'Pacifico';
+  color: rgb(255, 255, 255);
+  font-size: 3rem;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+  text-align: center;
+  text-decoration: none;
+  padding: 10px 0;
+  background-image: linear-gradient(135deg, #ff9ed7, #ff4eb5, #7b6cff, #1600d9);
+  -webkit-background-clip: text;
+}
+
+header a,
+header a:visited,
+header a:hover,
+header a:active {
+  color: inherit;
+  text-decoration: none;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 2em;
+  text-decoration: none;
+}
+
+main {
+  display: flex;
   justify-content: center;
+  align-items: center;
+  padding: 20px;
+  flex-grow: 1;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+footer {
+  text-align: center;
+  margin-top: 2rem;
+  font-size: 0.9rem;
+  color: #888;
 }
