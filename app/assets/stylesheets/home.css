@@ -1,0 +1,13 @@
+/* home.css */
+.header-title {
+  font-size: 4rem;
+  color: white;
+  text-shadow: 3px 3px 8px rgba(0,0,0,0.4);
+  margin-bottom: 2rem;
+}
+
+.quiz-description {
+  font-size: 1.2rem;
+  color: #eee;
+  margin-bottom: 1.5rem;
+}
