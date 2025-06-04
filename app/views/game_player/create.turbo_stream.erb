@@ -1,0 +1,5 @@
+<turbo-stream target="lobby" action="replace">
+  <template>
+    <%= render partial: "multiplayer/player_list", locals: { players: @game.game_players.includes(:user) } %>
+  </template>
+</turbo-stream>
