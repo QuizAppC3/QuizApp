@@ -20,12 +20,42 @@
           <%= submit_tag "Spiel starten", class: "start-button" %>
         </div>
       <% end %>
-
     </header>
+
+    <!-- Wetter-Widget -->
+    <div id="weather" style="margin-top: 2rem; text-align: center;">
+      <p>Wetterdaten werden geladen...</p>
+    </div>
 
     <footer>
       <p>&copy; <%= Time.now.year %> Quiz-App</p>
     </footer>
   </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const lat = 53.5511;
+      const lon = 9.9937;
+      const apiKey = c07433dbfac1c64dfa4c3315d0299730; // Ersetze das mit deinem echten API-Schlüssel
+
+      const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&lang=de&appid=${apiKey}`;
+
+      fetch(url)
+        .then(response => response.json())
+        .then(data => {
+          const temp = data.main.temp;
+          const description = data.weather[0].description;
+          const city = data.name;
+          const weatherHTML = `
+            <p><strong>Wetter in ${city}:</strong> ${temp}°C, ${description}</p>
+          `;
+          document.getElementById("weather").innerHTML = weatherHTML;
+        })
+        .catch(error => {
+          console.error('Fehler beim Abrufen der Wetterdaten:', error);
+          document.getElementById("weather").innerText = "Wetterdaten konnten nicht geladen werden.";
+        });
+    });
+  </script>
 </body>
 </html>
