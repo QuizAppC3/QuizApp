@@ -11,12 +11,16 @@
         </div>
       <% end %>
     </div>
+
+    <div class="navigation-links">
+      <%= link_to 'Zurück zur Auswahl', categories_index_path, class: 'btn btn-secondary' %>
+      <%= link_to 'Weiter', game_next_question_path, class: 'btn btn-primary' %>
+    </div>
   <% else %>
     <p class="selection-subtext">Du hast keine Kategorien ausgewählt.</p>
-  <% end %>
 
-  <div class="navigation-links">
-    <%= link_to 'Zurück zur Auswahl', categories_index_path, class: 'btn btn-secondary' %>
-    <%= link_to 'Weiter', game_next_question_path, class: 'btn btn-primary' %>
-  </div>
+    <div class="navigation-links">
+      <%= link_to 'Zurück zur Auswahl', categories_index_path, class: 'btn btn-secondary' %>
+    </div>
+  <% end %>
 </div>
