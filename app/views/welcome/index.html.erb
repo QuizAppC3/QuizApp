@@ -22,40 +22,40 @@
       <% end %>
     </header>
 
-    <!-- Wetter-Widget -->
-    <div id="weather" style="margin-top: 2rem; text-align: center;">
-      <p>Wetterdaten werden geladen...</p>
-    </div>
+<div id="weather-box" style="margin-top: 1.5rem; padding: 1rem; background: #ffffff; color: #333; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); text-align: center;">
+  <strong>Wetter in Hamburg:</strong>
+  <div id="weather-info">Wird geladen...</div>
+</div>
 
     <footer>
       <p>&copy; <%= Time.now.year %> Quiz-App</p>
     </footer>
   </div>
 
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const lat = 53.5511;
-      const lon = 9.9937;
-      const apiKey = c07433dbfac1c64dfa4c3315d0299730; // Ersetze das mit deinem echten API-Schlüssel
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const apiKey = "fd551a932b75c3ae0f4c4940d7ada914";
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=Hamburg&units=metric&lang=de&appid=${apiKey}`;
 
-      const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&lang=de&appid=${apiKey}`;
+    fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        const temp = data.main.temp;
+        const weather = data.weather[0].description;
+        const icon = data.weather[0].icon;
+        const iconUrl = `https://openweathermap.org/img/wn/${icon}@2x.png`;
 
-      fetch(url)
-        .then(response => response.json())
-        .then(data => {
-          const temp = data.main.temp;
-          const description = data.weather[0].description;
-          const city = data.name;
-          const weatherHTML = `
-            <p><strong>Wetter in ${city}:</strong> ${temp}°C, ${description}</p>
-          `;
-          document.getElementById("weather").innerHTML = weatherHTML;
-        })
-        .catch(error => {
-          console.error('Fehler beim Abrufen der Wetterdaten:', error);
-          document.getElementById("weather").innerText = "Wetterdaten konnten nicht geladen werden.";
-        });
-    });
-  </script>
+        document.getElementById('weather-info').innerHTML = `
+          <img src="${iconUrl}" alt="${weather}" style="vertical-align: middle;">
+          ${temp.toFixed(1)}°C, ${weather.charAt(0).toUpperCase() + weather.slice(1)}
+        `;
+      })
+      .catch(() => {
+        document.getElementById('weather-info').innerText = 'Wetterdaten konnten nicht geladen werden.';
+      });
+  });
+</script>
+
+
 </body>
 </html>
