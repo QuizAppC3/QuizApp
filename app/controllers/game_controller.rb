@@ -6,21 +6,33 @@ class GameController < ApplicationController
   end
 
 def start
+  mode = params[:mode] || 'single'
   session[:total_questions] = params[:total_questions].to_i
   session[:question_counter] = 0
   session[:score] = 0
   session[:asked_questions] = []
 
-  @game = current_user.games.create!(score: 0, active: true)  # <- wichtig
+  if mode == 'multi'
+    # Multiplayer: Erstelle Game mit Code & Host (current_user)
+    code = SecureRandom.hex(3).upcase  # z.B. 6-stelliger Code
+    @game = current_user.games.create!(score: 0, active: true, code: code, host: current_user)
+    session[:game_id] = @game.id
+    redirect_to multiplayer_waiting_path(code: code) # Lobby anzeigen
+  else
+  @game = current_user.games.create!(score: 0, active: true, host: current_user)
   session[:game_id] = @game.id
-
   redirect_to categories_path
 end
+
+end
+
 
 
 
 def next_question
   session[:question_counter] ||= 0
+  session[:asked_questions] ||= []
+
 
   if session[:question_counter] == session[:total_questions]
     redirect_to game_result_path
@@ -89,4 +101,34 @@ end
     @question = Question.order("RANDOM()").first
     session[:score] ||= 0
   end
+
+  def create_multiplayer
+  code = SecureRandom.hex(3) # z. B. 6-stelliger Code
+  @game = current_user.games.create!(code: code, active: true)
+
+  # Host ist gleichzeitig erster Spieler
+  GamePlayer.create!(game: @game, user: current_user, score: 0)
+
+  redirect_to game_lobby_path(code: @game.code)
+end
+def join
+  @game = Game.find_by(code: params[:code])
+  if @game && @game.active
+    GamePlayer.find_or_create_by!(game: @game, user: current_user) do |gp|
+      gp.score = 0
+    end
+    redirect_to game_lobby_path(code: @game.code)
+  else
+    redirect_to root_path, alert: "Spiel nicht gefunden oder schon vorbei."
+  end
+end
+
+def waiting
+    # Hier kannst du die Lobby-Logik implementieren,
+    # z.B. Spieler anzeigen, Status checken usw.
+    @game = Game.find_by(code: params[:code])
+    # ggf. Fehlerbehandlung, falls @game nicht gefunden wurde
+  end
+
+
 end

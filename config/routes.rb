@@ -25,4 +25,19 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+  # Multiplayer-Routen
+  get  'game/multiplayer/new', to: 'game#create_multiplayer', as: 'new_multiplayer_game'
+  get 'game/multiplayer/start', to: 'multiplayer#start_game', as: 'start_multiplayer_game'
+  get  'game/lobby', to: 'game#lobby', as: 'game_lobby'
+  get 'game/multiplayer/waiting', to: 'multiplayer#waiting', as: 'multiplayer_waiting'
+  # Zeigt das Formular zur Codeeingabe (z.B. /game/join)
+get  'game/join', to: 'multiplayer#join_form', as: 'join_game'
+  get 'game/multiplayer/question', to: 'multiplayer#question', as: 'multiplayer_question'
+  get 'game/multiplayer/answer', to: 'multiplayer#answer', as: 'multiplayer_answer'
+
+# Bearbeitet das Formular und joint das Spiel mit Code
+get  'game/do_join', to: 'multiplayer#join_game', as: 'do_join_game'
+
+
+
 end
