@@ -8,7 +8,6 @@
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= stylesheet_link_tag 'login', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  <%# These lines were removed here! %>
   <link href="https://fonts.googleapis.com/css2?family=Caveat&family=Pacifico&family=Press+Start+2P&display=swap" rel="stylesheet">
 </head>
 
@@ -16,14 +15,26 @@
   <h2 class="login-title">Registrieren</h2>
 
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "login-form" }) do |f| %>
+    <%# Hier können Devise Fehlermeldungen angezeigt werden %>
+    <%= render "devise/shared/error_messages", resource: resource %>
+
     <div class="form-group">
       <%= f.label :email, class: "form-label" %>
       <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-input" %>
     </div>
 
+    <%# Füge das username-Feld hier ein %>
+    <div class="form-group">
+      <%= f.label :username, class: "form-label" %>
+      <%= f.text_field :username, autofocus: true, autocomplete: "username", class: "form-input" %>
+    </div>
+
     <div class="form-group">
       <%= f.label :password, class: "form-label" %>
       <%= f.password_field :password, autocomplete: "new-password", class: "form-input" %>
+      <% if @minimum_password_length %>
+        <small class="form-text text-muted">(<%= @minimum_password_length %> Zeichen Minimum)</small>
+      <% end %>
     </div>
 
     <div class="form-group">

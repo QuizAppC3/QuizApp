@@ -10,10 +10,11 @@
   <%= render partial: "multiplayer/player_list", locals: { players: @players } %>
 </div>
 
- 
-
 <% if @game.user == current_user %>
   <%= link_to "Spiel starten", start_multiplayer_game_path(code: @game.code), class: "btn" %>
 <% else %>
-  <p>Warte auf den Host (<%= @game.user.username %>)…</p>
+  <div id="game_content">
+  <p>Warte auf den Host, der das Spiel startet, (<%= @game.user.username %>)…</p>
+</div>
+
 <% end %>

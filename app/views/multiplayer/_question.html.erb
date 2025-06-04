@@ -1,0 +1,28 @@
+<div id="game_content">
+  <h2>Frage <%= game.current_question_index + 1 %> von <%= JSON.parse(game.questions_order || '[]').size %></h2>
+
+  <p><%= question.frage %></p>
+
+  <%= form_with url: multiplayer_answer_path(code: game.code), method: :post, local: true do |f| %>
+    <div>
+      <%= f.radio_button :selected_answer, question.antwort1 %>
+      <%= f.label :selected_answer_1, question.antwort1 %>
+    </div>
+    <div>
+      <%= f.radio_button :selected_answer, question.antwort2 %>
+      <%= f.label :selected_answer_2, question.antwort2 %>
+    </div>
+    <div>
+      <%= f.radio_button :selected_answer, question.antwort3 %>
+      <%= f.label :selected_answer_3, question.antwort3 %>
+    </div>
+    <div>
+      <%= f.radio_button :selected_answer, question.antwort4 %>
+      <%= f.label :selected_answer_4, question.antwort4 %>
+    </div>
+
+    <%= f.hidden_field :question_id, value: question.id %>
+
+    <%= f.submit "Antwort abschicken" %>
+  <% end %>
+</div>
