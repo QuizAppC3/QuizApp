@@ -6,7 +6,7 @@ require 'simplecov'
 SimpleCov.start 'rails'
 
 require "minitest/reporters"
-# Minitest::Reporters.use! # <--- DIESE ZEILE AUSKOMMENTIEREN
+Minitest::Reporters.use! # <--- DIESE ZEILE AUSKOMMENTIEREN
 
 module ActiveSupport
   class TestCase
