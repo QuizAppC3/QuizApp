@@ -11,6 +11,7 @@
       <p class="willkommensubtext">Teste dein Wissen und hab Spaß!</p>
 
       <%= form_with url: game_start_path, method: :get, local: true, html: { class: "quiz-start-form" } do %>
+      
   <div class="form-group">
     <label for="total_questions" class="form-label">Wie viele Fragen möchtest du spielen?</label>
     <%= number_field_tag :total_questions, 5, min: 1, required: true, class: "form-input" %>
@@ -33,9 +34,39 @@
 
     </header>
 
+<div id="weather-box" style="margin-top: 1.5rem; padding: 1rem; background: #ffffff; color: #333; border-radius: 6px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); text-align: center;">
+  <strong>Wetter in Hamburg:</strong>
+  <div id="weather-info">Wird geladen...</div>
+</div>
+
     <footer>
       <p>&copy; <%= Time.now.year %> Quiz-App</p>
     </footer>
   </div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const apiKey = "fd551a932b75c3ae0f4c4940d7ada914"; // 
+    const url = `https://api.openweathermap.org/data/2.5/weather?lat=53.55&lon=10.00&units=metric&lang=de&appid=${apiKey}`;
+
+    fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        const temp = data.main.temp;
+        const weather = data.weather[0].description;
+        const icon = data.weather[0].icon;
+        const iconUrl = `https://openweathermap.org/img/wn/${icon}@2x.png`;
+
+        document.getElementById('weather-info').innerHTML = `
+          <img src="${iconUrl}" alt="${weather}" style="vertical-align: middle;">
+          ${temp.toFixed(1)}°C, ${weather.charAt(0).toUpperCase() + weather.slice(1)}
+        `;
+      })
+      .catch(() => {
+        document.getElementById('weather-info').innerText = 'Wetterdaten konnten nicht geladen werden.';
+      });
+  });
+</script>
+
 </body>
 </html>
