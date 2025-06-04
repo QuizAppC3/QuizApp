@@ -62,6 +62,8 @@ group :development, :test do
   gem "simplecov" #Falls Fehler auftreten: eigentlich mit require:false, funktioniert aber nicht wegen application.rb Zeile 7
   gem 'simplecov-html'
   gem 'simplecov_json_formatter'
+
+   gem 'railroady'
 end
 
 group :development do
