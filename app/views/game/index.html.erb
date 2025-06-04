@@ -9,7 +9,7 @@
 </p>
 
 <% if flash[:notice] %>
-  <p style="color: white;"><%= flash[:notice] %></p>
+  <p style="color: green;"><%= flash[:notice] %></p>
 <% elsif flash[:alert] %>
   <p style="color: red;"><%= flash[:alert] %></p>
 <% end %>
@@ -38,6 +38,6 @@
 
 <% if params[:answered] %>
   <div style="margin-top: 2rem;">
-    <%= button_to 'Weiter', game_next_question_path, method: :post, style: "padding: 1rem 2rem; font-size: 1rem; background-color: #2ecc71; color: white; border: none; border-radius: 8px; cursor: pointer; transition: background-color 0.3s;" %>
+    <%= button_to 'Weiter', game_next_question_path, method: :post, style: "padding: 1rem 2rem; font-size: 1rem; background-color: #3498db; color: white; border: none; border-radius: 8px; cursor: pointer; transition: background-color 0.3s;" %>
   </div>
 <% end %>
