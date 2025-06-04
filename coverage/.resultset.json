@@ -1,20 +1,6 @@
 {
   "Minitest": {
     "coverage": {
-      "/mnt/c/Users/craether/Documents/_siA/ITECH/Programmiersprachen und Methodik/QuizApp/app/models/question.rb": {
-        "lines": [
-          1,
-          1,
-          null
-        ]
-      },
-      "/mnt/c/Users/craether/Documents/_siA/ITECH/Programmiersprachen und Methodik/QuizApp/app/models/application_record.rb": {
-        "lines": [
-          1,
-          1,
-          null
-        ]
-      },
       "/mnt/c/Users/craether/Documents/_siA/ITECH/Programmiersprachen und Methodik/QuizApp/app/models/user.rb": {
         "lines": [
           1,
@@ -24,6 +10,13 @@
           1,
           null,
           null,
+          null
+        ]
+      },
+      "/mnt/c/Users/craether/Documents/_siA/ITECH/Programmiersprachen und Methodik/QuizApp/app/models/application_record.rb": {
+        "lines": [
+          1,
+          1,
           null
         ]
       },
@@ -85,106 +78,10 @@
           null
         ]
       },
-      "/mnt/c/Users/craether/Documents/_siA/ITECH/Programmiersprachen und Methodik/QuizApp/app/models/game.rb": {
+      "/mnt/c/Users/craether/Documents/_siA/ITECH/Programmiersprachen und Methodik/QuizApp/app/models/question.rb": {
         "lines": [
           1,
           1,
-          null
-        ]
-      },
-      "/mnt/c/Users/craether/Documents/_siA/ITECH/Programmiersprachen und Methodik/QuizApp/app/controllers/game_controller.rb": {
-        "lines": [
-          1,
-          1,
-          null,
-          1,
-          0,
-          null,
-          null,
-          1,
-          0,
-          0,
-          0,
-          0,
-          null,
-          0,
-          0,
-          null,
-          0,
-          null,
-          null,
-          null,
-          null,
-          1,
-          0,
-          null,
-          0,
-          0,
-          0,
-          null,
-          null,
-          0,
-          0,
-          null,
-          0,
-          0,
-          null,
-          null,
-          null,
-          null,
-          0,
-          null,
-          null,
-          0,
-          0,
-          0,
-          0,
-          0,
-          null,
-          0,
-          0,
-          null,
-          null,
-          null,
-          null,
-          1,
-          0,
-          0,
-          null,
-          0,
-          0,
-          0,
-          0,
-          null,
-          0,
-          null,
-          null,
-          null,
-          0,
-          0,
-          0,
-          null,
-          null,
-          0,
-          null,
-          null,
-          null,
-          null,
-          1,
-          0,
-          null,
-          0,
-          0,
-          null,
-          null,
-          null,
-          null,
-          1,
-          null,
-          1,
-          0,
-          0,
-          null,
           null
         ]
       },
@@ -203,8 +100,112 @@
           null
         ]
       },
+      "/mnt/c/Users/craether/Documents/_siA/ITECH/Programmiersprachen und Methodik/QuizApp/app/models/game.rb": {
+        "lines": [
+          1,
+          1,
+          null
+        ]
+      },
       "/mnt/c/Users/craether/Documents/_siA/ITECH/Programmiersprachen und Methodik/QuizApp/app/controllers/api_controller.rb": {
         "lines": [
+          0,
+          0
+        ],
+        "branches": {}
+      },
+      "/mnt/c/Users/craether/Documents/_siA/ITECH/Programmiersprachen und Methodik/QuizApp/app/controllers/game_controller.rb": {
+        "lines": [
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
+          null,
+          0,
+          0,
+          null,
+          null,
+          null,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          null,
+          null,
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          null,
+          null,
+          0,
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
+          null,
+          null,
+          null,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          0,
+          null,
+          null,
+          0,
+          null,
+          0,
+          0,
+          0,
           0,
           0
         ],
@@ -328,6 +329,348 @@
         "branches": {}
       }
     },
-    "timestamp": 1748854669
+    "timestamp": 1748938202
+  },
+  "Unit Tests": {
+    "coverage": {
+      "/mnt/c/Users/craether/Documents/_siA/ITECH/Programmiersprachen und Methodik/QuizApp/app/models/game.rb": {
+        "lines": [
+          1,
+          1,
+          null
+        ]
+      },
+      "/mnt/c/Users/craether/Documents/_siA/ITECH/Programmiersprachen und Methodik/QuizApp/app/models/application_record.rb": {
+        "lines": [
+          1,
+          1,
+          null
+        ]
+      },
+      "/mnt/c/Users/craether/Documents/_siA/ITECH/Programmiersprachen und Methodik/QuizApp/app/models/user.rb": {
+        "lines": [
+          1,
+          null,
+          null,
+          1,
+          1,
+          null,
+          null,
+          null
+        ]
+      },
+      "/mnt/c/Users/craether/Documents/_siA/ITECH/Programmiersprachen und Methodik/QuizApp/app/models/question.rb": {
+        "lines": [
+          1,
+          1,
+          null
+        ]
+      },
+      "/mnt/c/Users/craether/Documents/_siA/ITECH/Programmiersprachen und Methodik/QuizApp/app/controllers/api_controller.rb": {
+        "lines": [
+          0,
+          0
+        ],
+        "branches": {}
+      },
+      "/mnt/c/Users/craether/Documents/_siA/ITECH/Programmiersprachen und Methodik/QuizApp/app/controllers/application_controller.rb": {
+        "lines": [
+          0,
+          null,
+          0,
+          0
+        ],
+        "branches": {}
+      },
+      "/mnt/c/Users/craether/Documents/_siA/ITECH/Programmiersprachen und Methodik/QuizApp/app/controllers/categories_controller.rb": {
+        "lines": [
+          0,
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "branches": {}
+      },
+      "/mnt/c/Users/craether/Documents/_siA/ITECH/Programmiersprachen und Methodik/QuizApp/app/controllers/game_controller.rb": {
+        "lines": [
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
+          null,
+          0,
+          0,
+          null,
+          null,
+          null,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          null,
+          null,
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          null,
+          null,
+          0,
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
+          null,
+          null,
+          null,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          0,
+          null,
+          null,
+          0,
+          null,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "branches": {}
+      },
+      "/mnt/c/Users/craether/Documents/_siA/ITECH/Programmiersprachen und Methodik/QuizApp/app/controllers/tasks_controller.rb": {
+        "lines": [
+          0,
+          0,
+          null,
+          null,
+          0,
+          0,
+          0,
+          null,
+          null,
+          0,
+          0,
+          null,
+          null,
+          0,
+          0,
+          0,
+          null,
+          null,
+          0,
+          0,
+          null,
+          null,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          null,
+          null,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          null,
+          null,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          0,
+          0,
+          null,
+          0,
+          null,
+          0,
+          0,
+          0,
+          null,
+          null,
+          0,
+          0,
+          0,
+          0
+        ],
+        "branches": {}
+      },
+      "/mnt/c/Users/craether/Documents/_siA/ITECH/Programmiersprachen und Methodik/QuizApp/app/controllers/users_controller.rb": {
+        "lines": [
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "branches": {}
+      },
+      "/mnt/c/Users/craether/Documents/_siA/ITECH/Programmiersprachen und Methodik/QuizApp/app/controllers/welcome_controller.rb": {
+        "lines": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "branches": {}
+      },
+      "/mnt/c/Users/craether/Documents/_siA/ITECH/Programmiersprachen und Methodik/QuizApp/app/helpers/api_helper.rb": {
+        "lines": [
+          0,
+          0
+        ],
+        "branches": {}
+      },
+      "/mnt/c/Users/craether/Documents/_siA/ITECH/Programmiersprachen und Methodik/QuizApp/app/helpers/application_helper.rb": {
+        "lines": [
+          0,
+          0
+        ],
+        "branches": {}
+      },
+      "/mnt/c/Users/craether/Documents/_siA/ITECH/Programmiersprachen und Methodik/QuizApp/app/helpers/categories_helper.rb": {
+        "lines": [
+          0,
+          0
+        ],
+        "branches": {}
+      },
+      "/mnt/c/Users/craether/Documents/_siA/ITECH/Programmiersprachen und Methodik/QuizApp/app/helpers/game_helper.rb": {
+        "lines": [
+          0,
+          0
+        ],
+        "branches": {}
+      },
+      "/mnt/c/Users/craether/Documents/_siA/ITECH/Programmiersprachen und Methodik/QuizApp/app/helpers/tasks_helper.rb": {
+        "lines": [
+          0,
+          0
+        ],
+        "branches": {}
+      },
+      "/mnt/c/Users/craether/Documents/_siA/ITECH/Programmiersprachen und Methodik/QuizApp/app/helpers/users_helper.rb": {
+        "lines": [
+          0,
+          0
+        ],
+        "branches": {}
+      },
+      "/mnt/c/Users/craether/Documents/_siA/ITECH/Programmiersprachen und Methodik/QuizApp/app/helpers/welcome_helper.rb": {
+        "lines": [
+          0,
+          0
+        ],
+        "branches": {}
+      },
+      "/mnt/c/Users/craether/Documents/_siA/ITECH/Programmiersprachen und Methodik/QuizApp/app/jobs/application_job.rb": {
+        "lines": [
+          0,
+          null,
+          null,
+          null,
+          null,
+          null,
+          0
+        ],
+        "branches": {}
+      },
+      "/mnt/c/Users/craether/Documents/_siA/ITECH/Programmiersprachen und Methodik/QuizApp/app/mailers/application_mailer.rb": {
+        "lines": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "branches": {}
+      },
+      "/mnt/c/Users/craether/Documents/_siA/ITECH/Programmiersprachen und Methodik/QuizApp/app/models/task.rb": {
+        "lines": [
+          0,
+          0,
+          0
+        ],
+        "branches": {}
+      }
+    },
+    "timestamp": 1748966074
   }
 }
