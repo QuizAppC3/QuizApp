@@ -10,7 +10,7 @@
   <%= render partial: "multiplayer/player_list", locals: { players: @players } %>
 </div>
 
-              <%= console %> 
+ 
 
 <% if @game.user == current_user %>
   <%= link_to "Spiel starten", start_multiplayer_game_path(code: @game.code), class: "btn" %>
