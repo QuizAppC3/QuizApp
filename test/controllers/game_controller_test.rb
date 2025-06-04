@@ -1,111 +1,134 @@
+# test/controllers/game_controller_test.rb
 require "test_helper"
 
 class GameControllerTest < ActionDispatch::IntegrationTest
-  include Devise::Test::IntegrationHelpers
-
+  # Dieser Block wird vor jedem Test ausgeführt
   setup do
-    @user = FactoryBot.create(:user)
-    # Sicherstellen, dass genügend Fragen vorhanden sind
-    @question1 = FactoryBot.create(:question, kategorie: "Allgemein", korrekt: "Antwort A")
-    @question2 = FactoryBot.create(:question, kategorie: "Mathematik", korrekt: "Antwort B")
-    @question3 = FactoryBot.create(:question, kategorie: "Wissenschaft", korrekt: "Antwort C")
+    @user = create(:user) # Erstellt einen Testbenutzer über Factory Bot
+    sign_in @user        # Meldet den Benutzer für den Test an
 
-    # Dies ist KRITISCH für Devise in Integrationstests
-    Rails.application.env_config["devise.mapping"] = Devise.mappings[:user]
+    # Stelle sicher, dass genügend Fragen für die Tests vorhanden sind
+    # Min. 10 Fragen sind gut, wenn zufällig ausgewählt wird, damit @question nicht nil ist.
+    create_list(:question, 10)
+    # Eine spezifische Frage, falls ein Test eine bestimmte Frage braucht
+    @specific_question = create(:question, frage: "Was ist 1 + 1?", korrekt: "2", antwort1: "2", antwort2: "3", antwort3: "4", antwort4: "5")
   end
 
-  # --- Test für unauthentifizierten Zugriff auf index ---
-  # Basierend auf deiner Fehlermeldung, dass es ein 200 OK ist, nicht ein Redirect.
+  # --- Test: index (unauthentifiziert) ---
   test "should get index as unauthenticated user" do
-    sign_out @user # Sicherstellen, dass kein Benutzer angemeldet ist
-    get root_path # root_path sollte auf game#index zeigen
-    assert_response :success # Erwarte 200 OK, da der Controller anscheinend nicht umleitet, wenn unauthentifiziert.
-    assert_not_nil assigns(:question), "Sollte eine Frage zugewiesen haben."
-    assert_equal 0, session[:score], "Score sollte auf 0 initialisiert sein."
+    sign_out @user # Melde den Benutzer für diesen spezifischen Test ab
+    get game_url # Nutzt den Helfer für 'get game' (GameController#index)
+    assert_response :success # Erwartet, dass die Seite auch ohne Login erreichbar ist
+    # Prüft, dass keine Frage zugewiesen wird, wenn der Benutzer nicht angemeldet ist
+    # (Dies hängt von deiner Controller-Logik ab - der Controller sollte @question nicht setzen)
+    assert_nil assigns(:question), "Keine Frage sollte für unauthentifizierten Benutzer zugewiesen sein."
+    # Optional: Prüfe, ob die Seite einen Hinweis auf Anmeldung enthält oder einen allgemeinen Text
+    # assert_select "h1", "Willkommen zum Quiz!"
   end
 
-  # --- Test für authentifizierten Zugriff auf index ---
+  # --- Test: index (authentifiziert) ---
   test "should get index and load a question if authenticated" do
-    sign_in @user
-    get root_path # root_path sollte auf game#index zeigen
+    # Benutzer ist im Setup bereits angemeldet
+    get game_url # Nutzt den Helfer für 'get game'
     assert_response :success
+    # **Hier ist entscheidend, dass dein GameController#index eine Frage zuweist!**
+    # Annahme: Im GameController#index steht etwas wie `@question = Question.order("RANDOM()").first`
     assert_not_nil assigns(:question), "Sollte eine Frage zugewiesen haben."
-    assert_equal 0, session[:score], "Score sollte auf 0 initialisiert sein."
+    assert_instance_of Question, assigns(:question)
   end
 
-  # --- Test für das Starten eines neuen Spiels ---
-  # Dieser Test bleibt anspruchsvoll, da er eine korrekte POST-Route erwartet.
-  test "should try to start a new game and get a redirect if route works" do
-    sign_in @user
-    # Wir werden hier die assert_difference-Logik etwas anpassen,
-    # um den Fall eines 404 zu berücksichtigen, falls die Route wirklich fehlt.
-    initial_game_count = Game.count
-    post game_start_path, params: { total_questions: 3 }
-
-    # Prüfen, ob der Request erfolgreich war und zu einem Redirect führte
-    # Wenn hier ein 404 kommt, ist die Route das Problem.
-    if @response.redirect? # Prüfen, ob es überhaupt ein Redirect ist
-      assert_response :redirect, "Erwartete eine Weiterleitung nach dem Starten des Spiels."
-      follow_redirect! # Weiterleitung folgen, um Session zu laden
-      assert_equal initial_game_count + 1, Game.count, "Game.count sollte sich um 1 erhöhen, wenn das Spiel gestartet wurde."
-      assert_redirected_to categories_path
-      assert_equal 3, session[:total_questions], "total_questions sollte gesetzt sein."
-      assert_not_nil session[:game_id], "game_id sollte in der Session gespeichert sein."
-      assert Game.find(session[:game_id]).active, "Das erstellte Spiel sollte aktiv sein."
-    else
-      # Wenn es KEIN Redirect ist, bedeutet das wahrscheinlich einen 404 Not Found.
-      # Wir können hier assert_response :not_found erwarten, wenn die Route nicht existiert.
-      # Oder wir überspringen den Rest des Tests, da die Start-Action nicht erfolgreich war.
-      flunk "POST #{game_start_path} führte nicht zu einem Redirect (Status: #{@response.status}). " \
-            "Dies deutet auf ein Routenproblem für die 'start'-Action hin."
+  # --- Test: start game ---
+  test "should start a new game and redirect" do
+    assert_difference('Game.count', 1, "Sollte ein neues Game erstellen.") do
+      # Deine routes.rb definiert 'get 'game/start', to: 'game#start', as: 'game_start''
+      get game_start_url # Hier muss es ein GET Request sein!
     end
+    # Controller sollte nach dem Start zu game#index oder game#next_question weiterleiten.
+    # Prüfe hier, wohin dein Controller tatsächlich weiterleitet.
+    assert_redirected_to game_url # Oder game_next_question_url, je nach deiner Logik
+    game = Game.last # Hole das gerade erstellte Game aus der Datenbank
+    assert_equal @user, game.user, "Das Spiel sollte dem angemeldeten Benutzer gehören."
+    assert game.active?, "Das Spiel sollte aktiv sein nach dem Start."
+    assert_equal game.id, session[:game_id], "Game ID sollte in der Session gespeichert sein."
   end
 
-  # --- Test für die korrekte Beantwortung einer Frage ---
-  test "should handle correct answer and update score if game starts" do
-    sign_in @user
-    # Zuerst versuchen, ein Spiel zu starten und den Redirect zu folgen
-    post game_start_path, params: { total_questions: 1 }
-    unless @response.redirect? # Wenn start fehlschlägt, den Test überspringen
-      flunk "Spiel konnte nicht gestartet werden, 'answer'-Test übersprungen (Status: #{@response.status})."
-      return # Test abbrechen
-    end
-    follow_redirect!
+  # --- Test: handle correct answer ---
+  test "should handle correct answer and update score" do
+    game = create(:game, user: @user, score: 0, active: true)
+    session[:game_id] = game.id # Simuliere, dass das Spiel in der Session ist
 
-    assert_not_nil session[:game_id], "session[:game_id] muss nach Spielstart gesetzt sein."
-    game = Game.find(session[:game_id])
+    # Erstelle eine Frage (der Controller würde sie basierend auf Game.current_question finden)
+    question = create(:question, frage: "Was ist 2 + 2?", korrekt: "4", antwort1: "4", antwort2: "5")
 
-    patch game_answer_path, params: { question_id: @question1.id, selected_answer: @question1.korrekt }
+    # Deine routes.rb definiert 'post 'game/answer', to: 'game#answer', as: 'game_answer''
+    post game_answer_url, params: { answer: question.korrekt, question_id: question.id }
 
-    # Dein Controller leitet zu `game_path(answered: true)` weiter.
-    # Da die Routen nicht geändert werden sollen, und `game_path` oft zu `root_path`
-    # mit Parametern auflöst, prüfen wir auf `root_path(answered: true)`.
-    # Wenn dies immer noch fehlschlägt, musst du `response.location` überprüfen.
-    assert_redirected_to root_path(answered: true), "Sollte zur Root-URL mit 'answered=true' umleiten."
-
-    assert_equal "Richtig!", flash[:notice]
-    assert_equal 10, session[:score], "Session-Score sollte sich erhöhen."
-    assert_equal 10, game.reload.score, "Spiel-Score sollte aktualisiert werden."
+    # Annahme: Nach der Antwort wird zur nächsten Frage weitergeleitet (game_next_question)
+    assert_redirected_to game_next_question_url, "Sollte zur nächsten Frage weiterleiten nach korrekter Antwort."
+    game.reload # Lade das Game-Objekt neu, um den aktualisierten Score zu sehen
+    assert_equal 1, game.score, "Score sollte nach korrekter Antwort um 1 erhöht werden."
   end
 
-  # --- Test für die Anzeige der Ergebnisse ---
-  test "should show result and mark game as inactive if game starts" do
-    sign_in @user
-    # Zuerst versuchen, ein Spiel zu starten und den Redirect zu folgen
-    post game_start_path, params: { total_questions: 1 }
-    unless @response.redirect? # Wenn start fehlschlägt, den Test überspringen
-      flunk "Spiel konnte nicht gestartet werden, 'result'-Test übersprungen (Status: #{@response.status})."
-      return # Test abbrechen
-    end
-    follow_redirect!
+  # --- Test: handle incorrect answer ---
+  test "should handle incorrect answer and not update score" do
+    game = create(:game, user: @user, score: 0, active: true)
+    session[:game_id] = game.id
+    question = create(:question, frage: "Was ist 3 + 3?", korrekt: "6", antwort1: "7", antwort2: "6")
 
-    assert_not_nil session[:game_id], "session[:game_id] muss nach Spielstart gesetzt sein."
-    game = Game.find(session[:game_id])
+    # Deine routes.rb: 'post 'game/answer', to: 'game#answer', as: 'game_answer''
+    post game_answer_url, params: { answer: "7", question_id: question.id } # Falsche Antwort
 
-    get game_result_path
+    assert_redirected_to game_next_question_url, "Sollte zur nächsten Frage weiterleiten nach falscher Antwort."
+    game.reload
+    assert_equal 0, game.score, "Score sollte bei falscher Antwort nicht erhöht werden."
+  end
+
+  # --- Test: next_question ---
+  test "should get next question if authenticated and game active" do
+    game = create(:game, user: @user, active: true)
+    session[:game_id] = game.id
+
+    # Deine routes.rb: 'get 'game/next_question', to: 'game#next_question', as: 'game_next_question''
+    get game_next_question_url
     assert_response :success
-    assert_template :result
-    assert_equal game, assigns(:game), "Sollte das korrekte Spiel zuweisen."
-    assert_not game.reload.active, "Das Spiel sollte als inaktiv markiert werden."
+    # Annahme: Der Controller lädt eine @question und/oder @game für die View
+    assert_not_nil assigns(:question), "Sollte eine nächste Frage laden."
+  end
+
+  # --- Test: show result ---
+  test "should show result and mark game as inactive" do
+    # Ein Game erstellen, das beendet werden soll
+    game = create(:game, user: @user, score: 5, active: true)
+    session[:game_id] = game.id # Simuliere, dass dieses Game die aktuelle Session ist
+
+    # Deine routes.rb: 'get 'game/result', to: 'game#result', as: 'game_result''
+    get game_result_url
+    assert_response :success
+    game.reload # Lade das Game neu, um den 'active'-Status zu prüfen
+    refute game.active?, "Game sollte nach Anzeige des Ergebnisses inaktiv sein."
+    # Überprüfe den angezeigten Score in der View (anpassen an dein HTML)
+    assert_select "h2", /Dein finaler Score: 5/ # Beispiel: Sucht nach einem h2-Tag mit dem Text "Dein finaler Score: 5"
+  end
+
+  # --- Test: Redirect bei fehlender Authentifizierung ---
+  test "should redirect if not authenticated for protected actions" do
+    sign_out @user # Melde den Benutzer ab
+
+    # Teste 'game/start' (GET in deiner routes.rb)
+    get game_start_url
+    assert_redirected_to new_user_session_url, "GET game/start sollte zu Login umleiten."
+
+    # Teste 'game/answer' (POST in deiner routes.rb)
+    # Braucht dummy params, um nicht an der Routen-Match-Logik zu scheitern
+    post game_answer_url, params: { answer: "any", question_id: create(:question).id }
+    assert_redirected_to new_user_session_url, "POST game/answer sollte zu Login umleiten."
+
+    # Teste 'game/next_question' (GET in deiner routes.rb)
+    get game_next_question_url
+    assert_redirected_to new_user_session_url, "GET game/next_question sollte zu Login umleiten."
+
+    # Teste 'game/result' (GET in deiner routes.rb)
+    get game_result_url
+    assert_redirected_to new_user_session_url, "GET game/result sollte zu Login umleiten."
   end
 end
