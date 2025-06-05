@@ -1,20 +1,12 @@
 class GameController < ApplicationController
   before_action :authenticate_user!
 
-  def index
-    # Hier wird die erste Frage geladen oder die Ansicht für eine neue Frage
-    # vorbereitet. Wir stellen sicher, dass @question gesetzt ist.
-    # Wenn params[:answered] true ist, wird der "Weiter"-Button angezeigt.
-    # Ansonsten wird load_random_question (für den Spielstart) aufgerufen
-    # oder die nächste Frage, wenn wir von next_question hierher gerendert werden.
-
-    # Wenn du direkt zur game_path (index) navigierst,
-    # ohne dass eine Frage geladen wurde, soll die erste Frage erscheinen.
-    # Dies ist hauptsächlich für den ersten Seitenaufruf nach dem Start relevant.
-    unless @question # @question könnte bereits durch next_question gesetzt sein
-      load_random_question # Lädt eine zufällige Frage für den initialen Aufruf
-    end
+ def index
+  if session[:current_question_id]
+    @question = Question.find_by(id: session[:current_question_id])
   end
+end
+
 
   def start
     mode = params[:mode] || 'single'
@@ -57,15 +49,13 @@ end
     else
       @question = Question.where.not(id: asked_ids).order("RANDOM()").first
     end
+    session[:current_question_id] = @question.id
 
     if @question
       session[:asked_questions] << @question.id
-      # Wir setzen @answered auf false, um sicherzustellen, dass die Frage angezeigt wird
       @answered = false
       session[:question_counter] += 1
-      # Statt render :index, leiten wir um zur `index`-Action, aber ohne den answered-Parameter.
-      # Dies "bereinigt" den URL und sorgt dafür, dass die Frage wieder angezeigt wird.
-      redirect_to game_path # Leitet zur game_path (index) um, ohne Parameter
+      redirect_to game_path 
     else
       flash[:alert] = "Nicht genügend Fragen verfügbar."
       redirect_to game_result_path
@@ -89,10 +79,8 @@ end
       game = current_user.games.find_by(id: session[:game_id])
       game.update(score: session[:score]) if game
     end
+      session.delete(:current_question_id)
 
-    # Hier müssen wir den Parameter `answered: true` übergeben,
-    # damit die index-Seite weiß, dass die Antwort gerade geprüft wurde
-    # und den "Weiter"-Button anzeigen soll.
     redirect_to game_path(answered: true)
   end
 
@@ -106,10 +94,4 @@ end
 
   private
 
-  def load_random_question
-    # Diese Methode wird nur beim initialen Laden der Quizseite aufgerufen,
-    # nicht bei jeder "nächsten Frage".
-    @question = Question.order("RANDOM()").first
-    session[:score] ||= 0
-  end
 end
