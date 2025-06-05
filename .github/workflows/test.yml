@@ -1,6 +1,6 @@
 # .github/workflows/test.yml
 
-name: Rails CI
+name: Quizapp CI
 
 on:
   push:
