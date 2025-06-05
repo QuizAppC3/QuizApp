@@ -1,6 +1,20 @@
 {
   "Minitest": {
     "coverage": {
+      "/mnt/c/Users/craether/Documents/_siA/ITECH/Programmiersprachen und Methodik/QuizApp/app/models/question.rb": {
+        "lines": [
+          1,
+          1,
+          null
+        ]
+      },
+      "/mnt/c/Users/craether/Documents/_siA/ITECH/Programmiersprachen und Methodik/QuizApp/app/models/application_record.rb": {
+        "lines": [
+          1,
+          1,
+          null
+        ]
+      },
       "/mnt/c/Users/craether/Documents/_siA/ITECH/Programmiersprachen und Methodik/QuizApp/app/models/user.rb": {
         "lines": [
           1,
@@ -13,17 +27,17 @@
           null
         ]
       },
-      "/mnt/c/Users/craether/Documents/_siA/ITECH/Programmiersprachen und Methodik/QuizApp/app/models/application_record.rb": {
+      "/mnt/c/Users/craether/Documents/_siA/ITECH/Programmiersprachen und Methodik/QuizApp/app/controllers/categories_controller.rb": {
         "lines": [
           1,
           1,
-          null
-        ]
-      },
-      "/mnt/c/Users/craether/Documents/_siA/ITECH/Programmiersprachen und Methodik/QuizApp/app/controllers/welcome_controller.rb": {
-        "lines": [
+          2,
+          null,
+          null,
           1,
-          1,
+          4,
+          4,
+          4,
           null,
           null
         ]
@@ -78,24 +92,106 @@
           null
         ]
       },
-      "/mnt/c/Users/craether/Documents/_siA/ITECH/Programmiersprachen und Methodik/QuizApp/app/models/question.rb": {
+      "/mnt/c/Users/craether/Documents/_siA/ITECH/Programmiersprachen und Methodik/QuizApp/app/controllers/welcome_controller.rb": {
         "lines": [
           1,
           1,
+          null,
           null
         ]
       },
-      "/mnt/c/Users/craether/Documents/_siA/ITECH/Programmiersprachen und Methodik/QuizApp/app/controllers/categories_controller.rb": {
+      "/mnt/c/Users/craether/Documents/_siA/ITECH/Programmiersprachen und Methodik/QuizApp/app/controllers/game_controller.rb": {
         "lines": [
           1,
           1,
-          2,
+          null,
+          1,
+          1,
           null,
           null,
           1,
-          4,
-          4,
-          4,
+          0,
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
+          null,
+          0,
+          null,
+          null,
+          null,
+          null,
+          1,
+          0,
+          null,
+          0,
+          0,
+          0,
+          null,
+          null,
+          0,
+          0,
+          null,
+          0,
+          0,
+          null,
+          null,
+          null,
+          null,
+          0,
+          null,
+          null,
+          0,
+          0,
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
+          null,
+          null,
+          null,
+          null,
+          1,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          0,
+          null,
+          0,
+          null,
+          null,
+          null,
+          0,
+          0,
+          0,
+          null,
+          null,
+          0,
+          null,
+          null,
+          null,
+          null,
+          1,
+          0,
+          null,
+          0,
+          0,
+          null,
+          null,
+          null,
+          null,
+          1,
+          null,
+          1,
+          1,
+          1,
           null,
           null
         ]
@@ -109,103 +205,6 @@
       },
       "/mnt/c/Users/craether/Documents/_siA/ITECH/Programmiersprachen und Methodik/QuizApp/app/controllers/api_controller.rb": {
         "lines": [
-          0,
-          0
-        ],
-        "branches": {}
-      },
-      "/mnt/c/Users/craether/Documents/_siA/ITECH/Programmiersprachen und Methodik/QuizApp/app/controllers/game_controller.rb": {
-        "lines": [
-          0,
-          0,
-          null,
-          0,
-          0,
-          0,
-          null,
-          0,
-          0,
-          0,
-          0,
-          0,
-          null,
-          0,
-          0,
-          null,
-          0,
-          0,
-          null,
-          null,
-          null,
-          0,
-          0,
-          null,
-          0,
-          0,
-          0,
-          0,
-          null,
-          0,
-          0,
-          null,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          null,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          null,
-          null,
-          0,
-          0,
-          0,
-          null,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          null,
-          null,
-          0,
-          0,
-          0,
-          0,
-          null,
-          0,
-          0,
-          null,
-          null,
-          null,
-          0,
-          0,
-          null,
-          0,
-          0,
-          0,
-          0,
-          null,
-          null,
-          0,
-          null,
-          0,
-          0,
-          0,
           0,
           0
         ],
@@ -329,7 +328,7 @@
         "branches": {}
       }
     },
-    "timestamp": 1748938202
+    "timestamp": 1749113236
   },
   "Unit Tests": {
     "coverage": {
