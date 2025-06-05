@@ -71,4 +71,4 @@ jobs:
         uses: actions/upload-artifact@v4 # Nutze die neueste Version dieser Action
         with:
           name: simplecov-coverage-report # Name, unter dem der Report in GitHub Actions erscheint
-          path: coverage/report/
+          path: coverage/
