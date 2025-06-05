@@ -62,3 +62,13 @@ jobs:
           DB_PASSWORD: supersecurepassword # <-- WICHTIG: Passt zu services.postgres.env.POSTGRES_PASSWORD
           DB_HOST: localhost # <-- WICHTIG: Passt zu database.yml host default
         run: bundle exec rails test
+ 
+      - name: Upload SimpleCov coverage report
+        # Dieser Schritt wird ausgeführt, um den 'coverage/' Ordner hochzuladen.
+        # 'if: always()' stellt sicher, dass der Report auch hochgeladen wird,
+        # selbst wenn einige Tests fehlschlagen.
+        if: always()
+        uses: actions/upload-artifact@v4 # Nutze die neueste Version dieser Action
+        with:
+          name: simplecov-coverage-report # Name, unter dem der Report in GitHub Actions erscheint
+          path: coverage/
