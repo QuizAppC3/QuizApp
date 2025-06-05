@@ -41,12 +41,6 @@ def join_game
 end
 
 
-
-
-
-
-
-
 def start_game
   @game = Game.find_by(code: params[:code])
 
@@ -97,8 +91,8 @@ end
 
   @question = Question.find(question_ids[current_index])
 
-  # Kein HTML rendern – ggf. redirecten oder einfach "no content"
-  head :no_content
+  # Statt head :no_content rendern wir das Template
+  render "multiplayer/question", locals: { game: @game, question: @question }
 end
 
 

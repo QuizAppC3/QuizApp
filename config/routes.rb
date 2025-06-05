@@ -7,8 +7,8 @@ Rails.application.routes.draw do
   
   root 'welcome#index' # anfragen auf root url werden auf welcome page geleitet
   get 'profile', to: 'users#profile'
-  get '/categories', to: 'categories#index'
-  post 'categories/auswahl'
+ get '/categories', to: 'categories#index'
+  post '/categories/selection', to: 'categories#auswahl' #
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.
   get "up" => "rails/health#show", as: :rails_health_check
@@ -26,13 +26,13 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
   # Multiplayer-Routen
-  get  'game/multiplayer/new', to: 'game#create_multiplayer', as: 'new_multiplayer_game'
-  get 'game/multiplayer/start', to: 'multiplayer#start_game', as: 'start_multiplayer_game'
+  get  'multiplayer/new', to: 'game#create_multiplayer', as: 'new_multiplayer_game'
+  get 'multiplayer/start', to: 'multiplayer#start_game', as: 'start_multiplayer_game'
   get  'game/lobby', to: 'game#lobby', as: 'game_lobby'
   get 'game/multiplayer/waiting', to: 'multiplayer#waiting', as: 'multiplayer_waiting'
   # Zeigt das Formular zur Codeeingabe (z.B. /game/join)
 get  'game/join', to: 'multiplayer#join_form', as: 'join_game'
-  get 'game/multiplayer/question', to: 'multiplayer#question', as: 'multiplayer_question'
+  get 'multiplayer/question', to: 'multiplayer#question', as: 'multiplayer_question'
   get 'game/multiplayer/answer', to: 'multiplayer#answer', as: 'multiplayer_answer'
 
 # Bearbeitet das Formular und joint das Spiel mit Code
