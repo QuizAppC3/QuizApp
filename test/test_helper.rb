@@ -10,7 +10,7 @@ Minitest::Reporters.use! # <--- DIESE ZEILE AUSKOMMENTIEREN
 
 module ActiveSupport
   class TestCase
-    parallelize(workers: :number_of_processors)
+   # parallelize(workers: :number_of_processors)
     # fixtures :all # <--- Weiterhin auskommentiert lassen
     include FactoryBot::Syntax::Methods
     include Devise::Test::IntegrationHelpers
