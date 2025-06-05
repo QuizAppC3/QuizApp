@@ -1,9 +1,15 @@
 <div class="selection-container">
+  <!-- Titel der Seite -->
   <h1 class="selection-title">Ausgewählte Kategorien</h1>
+
+  <!-- Einbindung des Stylesheets für die Kategorienanzeige -->
   <%= stylesheet_link_tag 'categories', media: 'all' %>
 
   <% if @selected_categories.present? %>
+    <!-- Hinweistext, wenn Kategorien ausgewählt wurden -->
     <p class="selection-subtext">Du hast folgende Kategorien ausgewählt:</p>
+
+    <!-- Darstellung der ausgewählten Kategorien in einem Grid -->
     <div class="category-grid">
       <% @selected_categories.each do |kategorie| %>
         <div class="category-item">
@@ -12,13 +18,16 @@
       <% end %>
     </div>
 
+    <!-- Navigation: zurück zur Auswahl oder weiter zur nächsten Frage -->
     <div class="navigation-links">
       <%= link_to 'Zurück zur Auswahl', categories_index_path, class: 'btn btn-secondary' %>
       <%= link_to 'Weiter', game_next_question_path, class: 'btn btn-primary' %>
     </div>
   <% else %>
+    <!-- Hinweistext, wenn keine Kategorien ausgewählt wurden -->
     <p class="selection-subtext">Du hast keine Kategorien ausgewählt.</p>
 
+    <!-- Nur der Zurück-Link wird angezeigt -->
     <div class="navigation-links">
       <%= link_to 'Zurück zur Auswahl', categories_index_path, class: 'btn btn-secondary' %>
     </div>

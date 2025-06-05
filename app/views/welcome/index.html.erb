@@ -2,51 +2,59 @@
 <html>
 <head>
   <title>Willkommen zum Quiz!</title>
+  <!-- Haupt-Stylesheet der Anwendung -->
   <%= stylesheet_link_tag 'application', media: 'all' %> 
 </head>
 <body>
   <div class="container">
     <header>
+      <!-- Begrüßungstitel -->
       <h1 class="willkommen">Willkommen zum spannenden Quiz!</h1>
       <p class="willkommensubtext">Teste dein Wissen und hab Spaß!</p>
 
+      <!-- Formular zum Starten des Spiels -->
       <%= form_with url: game_start_path, method: :get, local: true, html: { class: "quiz-start-form" } do %>
       
-  <div class="form-group">
-    <label for="total_questions" class="form-label">Wie viele Fragen möchtest du spielen?</label>
-    <%= number_field_tag :total_questions, 5, min: 1, required: true, class: "form-input" %>
-  </div>
+        <!-- Eingabe: Anzahl der Fragen -->
+        <div class="form-group">
+          <label for="total_questions" class="form-label">Wie viele Fragen möchtest du spielen?</label>
+          <%= number_field_tag :total_questions, 5, min: 1, required: true, class: "form-input" %>
+        </div>
 
-  <div class="form-group">
-    <label class="form-label">Spielmodus</label><br>
-    <%= radio_button_tag :mode, 'single', true %> Einzelspieler<br>
-    <%= radio_button_tag :mode, 'multi' %> Mehrspieler
-  </div>
+        <!-- Auswahl: Spielmodus -->
+        <div class="form-group">
+          <label class="form-label">Spielmodus</label><br>
+          <%= radio_button_tag :mode, 'single', true %> Einzelspieler<br>
+          <%= radio_button_tag :mode, 'multi' %> Mehrspieler
+        </div>
 
-  <div class="form-group">
-    <%= submit_tag "Spiel starten", class: "start-button" %>
-  </div>
+        <!-- Button: Spiel starten -->
+        <div class="form-group">
+          <%= submit_tag "Spiel starten", class: "start-button" %>
+        </div>
 
-<%= link_to "Spiel beitreten", join_game_path, class: "btn btn-primary" %>
+        <!-- Link zum Beitreten eines Multiplayer-Spiels -->
+        <%= link_to "Spiel beitreten", join_game_path, class: "btn btn-primary" %>
 
-
-<% end %>
-
+      <% end %>
     </header>
 
-<div id="weather-box" style="margin-top: 1.5rem; padding: 1rem; background: #ffffff; color: #333; border-radius: 6px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); text-align: center;">
-  <strong>Wetter in Hamburg:</strong>
-  <div id="weather-info">Wird geladen...</div>
-</div>
+    <!-- Wetteranzeige für Hamburg -->
+    <div id="weather-box" style="margin-top: 1.5rem; padding: 1rem; background: #ffffff; color: #333; border-radius: 6px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); text-align: center;">
+      <strong>Wetter in Hamburg:</strong>
+      <div id="weather-info">Wird geladen...</div>
+    </div>
 
     <footer>
+      <!-- Copyright -->
       <p>&copy; <%= Time.now.year %> Quiz-App</p>
     </footer>
   </div>
 
+<!-- Script: Wetterdaten von OpenWeatherMap laden und anzeigen -->
 <script>
   document.addEventListener("DOMContentLoaded", function() {
-    const apiKey = "fd551a932b75c3ae0f4c4940d7ada914"; // 
+    const apiKey = "fd551a932b75c3ae0f4c4940d7ada914"; // Dein OpenWeatherMap API-Key
     const url = `https://api.openweathermap.org/data/2.5/weather?lat=53.55&lon=10.00&units=metric&lang=de&appid=${apiKey}`;
 
     fetch(url)

@@ -1,42 +1,55 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
+    <!-- Setzt den Seitentitel, wenn vorhanden, sonst Standard "Deine App" -->
     <title><%= yield(:title) || "Deine App" %></title>
+
+    <!-- Sicherheits-Tags für CSRF-Schutz und Content Security Policy -->
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+
+    <!-- Responsive Design für Mobilgeräte -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Haupt-Stylesheet einbinden -->
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    
-    <%# WICHTIG: javascript_importmap_tags MUSS ZUERST KOMMEN %>
-    <%= javascript_importmap_tags %> 
-    
+
+    <%# WICHTIG: Importmap muss zuerst eingebunden werden für die richtige Reihenfolge von JS-Modulen %>
+    <%= javascript_importmap_tags %>
+
+    <!-- Einbindung von Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Caveat&family=Pacifico&family=Press+Start+2P&display=swap" rel="stylesheet">
-    
-    <%# turbo_include_tags kann danach kommen, da es die Import Map nutzen wird %>
-    <%= turbo_include_tags %> 
+
+    <%# Turbo kann nach Importmap eingebunden werden, da es davon abhängt %>
+    <%= turbo_include_tags %>
 </head>
 
 <body>
   <header>
+    <!-- Überschrift mit Link zur Startseite -->
     <h1><%= link_to "Quiz App", root_path, class: "header" %></h1>
 
+    <!-- Benutzer-Authentifizierungsbereich oben rechts -->
+    <div class="top-right-auth">
+      <% if user_signed_in? %>
+        <!-- Zeigt die E-Mail des eingeloggten Nutzers -->
+        <span class="auth-email"><%= current_user.email %></span>
 
-<div class="top-right-auth">
-  <% if user_signed_in? %>
-    <span class="auth-email"><%= current_user.email %></span>
-    <%= link_to "Profil", profile_path, class: "auth-button" %>
-    <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "auth-button logout" %>
-  <% else %>
-    <%= link_to "Login", new_user_session_path, class: "auth-button" %>
-    <%= link_to "Registrieren", new_user_registration_path, class: "auth-button" %>
-  <% end %>
-</div>
-
+        <!-- Links zum Profil und Logout -->
+        <%= link_to "Profil", profile_path, class: "auth-button" %>
+        <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "auth-button logout" %>
+      <% else %>
+        <!-- Links für nicht eingeloggte Benutzer -->
+        <%= link_to "Login", new_user_session_path, class: "auth-button" %>
+        <%= link_to "Registrieren", new_user_registration_path, class: "auth-button" %>
+      <% end %>
+    </div>
   </header>
 
   <main>
+    <!-- Container für den Hauptinhalt der Seite -->
     <div class="content-container">
-      <%= yield %>
+      <%= yield %> <!-- Hier wird der jeweilige View-Inhalt eingefügt -->
     </div>
   </main>
 </body>
