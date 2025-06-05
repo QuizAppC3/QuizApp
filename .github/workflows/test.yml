@@ -4,7 +4,7 @@ name: Rails CI
 
 on:
   push:
-    branches: [ "main", "master", "pipeline" ]
+    branches: [ "main", "master", "codecoverage" ]
   pull_request:
     branches: [ "main", "master" ]
 
