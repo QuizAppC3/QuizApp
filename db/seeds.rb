@@ -415,7 +415,7 @@ Question.create([
   },
   {
     frage: "Wie heißt der längste Fluss Afrikas?",
-    antwort1: "Kongo",
+    antwort1: "KonFo",
     antwort2: "Nil",
     antwort3: "Niger",
     antwort4: "Sambesi",

@@ -4,6 +4,8 @@
   <p><strong>Email:</strong> <%= @user.email %></p>
   <p><strong>Mitglied seit:</strong> <%= @user.created_at.to_date %></p>
 
+  <%= link_to "Profil bearbeiten", edit_user_registration_path, class: "auth-button", style: "display: inline-block; margin: 10px 0;" %>
+
   <h3>Spiel-Statistik</h3>
 
   <% if @games.any? %>

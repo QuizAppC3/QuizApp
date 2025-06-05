@@ -1,0 +1,15 @@
+<h1>Spiel Lobby</h1>
+<p>Spielcode: <%= @game.code %></p>
+
+<h2>Spieler im Spiel:</h2>
+<ul>
+  <% @game.players.each do |player| %>
+    <li><%= player.username %></li>
+  <% end %>
+</ul>
+
+<% if current_user == @game.host %>
+  <%= button_to "Spiel starten", start_multiplayer_game_path(code: @game.code), method: :post %>
+<% else %>
+  <p>Warte auf den Host...</p>
+<% end %>

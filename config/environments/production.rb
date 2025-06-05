@@ -81,6 +81,7 @@ Rails.application.configure do
 
   # Enable DNS rebinding protection and other `Host` header attacks.
   config.hosts << "74.235.228.194"
+  config.hosts << "olo.eastus.cloudapp.azure.com"
 
   #
   # Skip DNS rebinding protection for the default health check endpoint.

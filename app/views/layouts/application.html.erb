@@ -6,24 +6,32 @@
     <%= csp_meta_tag %>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    
+    <%# WICHTIG: javascript_importmap_tags MUSS ZUERST KOMMEN %>
+    <%= javascript_importmap_tags %> 
+    
     <link href="https://fonts.googleapis.com/css2?family=Caveat&family=Pacifico&family=Press+Start+2P&display=swap" rel="stylesheet">
+    
+    <%# turbo_include_tags kann danach kommen, da es die Import Map nutzen wird %>
+    <%= turbo_include_tags %> 
 </head>
 
 <body>
   <header>
     <h1><%= link_to "Quiz App", root_path, class: "header" %></h1>
 
-    <nav class="user-nav">
-      <% if user_signed_in? %>
-      <%= link_to "Profil", profile_path %> |
-        <span>Willkommen, <%= current_user.email %></span> |
-        <%= link_to "Logout", destroy_user_session_path, method: :delete %>
-      <% else %>
-        <%= link_to "Login", new_user_session_path %> |
-        <%= link_to "Registrieren", new_user_registration_path %>
-      <% end %>
-    </nav>
+
+<div class="top-right-auth">
+  <% if user_signed_in? %>
+    <span class="auth-email"><%= current_user.email %></span>
+    <%= link_to "Profil", profile_path, class: "auth-button" %>
+    <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "auth-button logout" %>
+  <% else %>
+    <%= link_to "Login", new_user_session_path, class: "auth-button" %>
+    <%= link_to "Registrieren", new_user_registration_path, class: "auth-button" %>
+  <% end %>
+</div>
+
   </header>
 
   <main>

@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Wähle deine Kategorie!</title>
-  <%= stylesheet_link_tag 'categories', media: 'all' %>
+  <title>Wähle deine Kategorie!</title>
+  <%= stylesheet_link_tag 'categories', media: 'all' %>
 </head>
+<body>
 
-<%= form_tag('/categories/auswahl', method: 'post') do %>
+  <!-- Formular zur Kategorieauswahl -->
+  <%= form_tag('/categories/selection', method: :post, data: { turbo: false }) do %>
   <ul class="category-grid">
     <% @unique_categories.each do |kategorie| %>
       <li class="category-item">
@@ -16,3 +18,5 @@
   </ul>
   <%= submit_tag 'Auswahl bestätigen' %>
 <% end %>
+</body>
+</html>

@@ -1,27 +1,26 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Ausgewählte Kategorien</title>
-  <%= stylesheet_link_tag 'application', media: 'all' %>
+<div class="selection-container">
+  <h1 class="selection-title">Ausgewählte Kategorien</h1>
   <%= stylesheet_link_tag 'categories', media: 'all' %>
-</head>
-<body>
-  <div class="container">
-    <h1>Ausgewählte Kategorien</h1>
 
-    <% if @selected_categories.present? %>
-      <p>Du hast folgende Kategorien ausgewählt:</p>
-      <ul>
-        <% @selected_categories.each do |kategorie| %>
-          <li><%= kategorie %></li>
-        <% end %>
-      </ul>
-    <% else %>
-      <p>Du hast keine Kategorien ausgewählt.</p>
-    <% end %>
+  <% if @selected_categories.present? %>
+    <p class="selection-subtext">Du hast folgende Kategorien ausgewählt:</p>
+    <div class="category-grid">
+      <% @selected_categories.each do |kategorie| %>
+        <div class="category-item">
+          <span class="category-label"><%= kategorie %></span>
+        </div>
+      <% end %>
+    </div>
 
-    <%= link_to 'Zurück zur Auswahl', categories_index_path %>
-    <%= link_to 'Weiter', game_next_question_path %>
-  </div>
-</body>
-</html>
+    <div class="navigation-links">
+      <%= link_to 'Zurück zur Auswahl', categories_index_path, class: 'btn btn-secondary' %>
+      <%= link_to 'Weiter', game_next_question_path, class: 'btn btn-primary' %>
+    </div>
+  <% else %>
+    <p class="selection-subtext">Du hast keine Kategorien ausgewählt.</p>
+
+    <div class="navigation-links">
+      <%= link_to 'Zurück zur Auswahl', categories_index_path, class: 'btn btn-secondary' %>
+    </div>
+  <% end %>
+</div>

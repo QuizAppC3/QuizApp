@@ -1,4 +1,4 @@
-name: Auto-Deploy to Azure Production
+name: Deploy to Azure VM
 
 on:
   push:
@@ -10,39 +10,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v3
+      - name: Checkout repo
+        uses: actions/checkout@v3
 
-    - name: SSH into Azure VM and Deploy
-      uses: appleboy/ssh-action@master
-      with:
-        host: ${{ secrets.AZURE_HOST }}  # Stellt sicher, dass der Host korrekt geladen wird!
-        username: ${{ secrets.AZURE_USER }}
-        key: ${{ secrets.AZURE_SSH_KEY }}
-        port: 22
-        script: |
-          cd /var/www/quizapp/code
-          git pull origin main
-          sudo apt autoremove --yes
-          sudo gem install rails
-          sudo gem install bundler
-          bundle install
-          export GEM_HOME="$HOME/.gem"
-          sudo gem cleanup
-          sudo gem pristine pg --version 1.5.9
-          sudo apt install postgresql postgresql-contrib libpq-dev --yes
-          sudo systemctl start postgresql
-          export DB_USERNAME=azureuser export DB_PASSWORD=PnSulZMF6HkerC7vFQ8V
-          sudo gem pristine pg --version 1.5.9
-          sudo gem pristine --all
-          export LANG=en_US.UTF-8
-          export GEM_HOME="$HOME/.gem"
-          bundle install
-          RAILS_ENV=production bundle install
-          RAILS_ENV=production rails assets:precompile
-          RAILS_ENV=production rails db:migrate
-          RAILS_ENV=production rails db:seed
-          sudo fuser -k 3000/tcp
-          sudo systemctl restart nginx
-          passenger stop
-          passenger start
+      - name: Setup SSH key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.AZURE_SSH_KEY }}" | tr -d '\r' > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H 74.235.228.194 >> ~/.ssh/known_hosts
+
+      - name: Run deploy script on Azure VM
+        run: ssh -o StrictHostKeyChecking=no azureuser@74.235.228.194 'sudo bash -l /var/www/quizapp/deploy.sh'
+
+
+
